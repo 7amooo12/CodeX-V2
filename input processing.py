@@ -1427,20 +1427,61 @@ if __name__ == "__main__":
         try:
             from pdf_report_generator import SecurityReportPDF
             
-            print("[*] Generating PDF report with charts and visualizations...")
-            pdf_filename = "security_analysis_report.pdf"
+            print("[*] Generating comprehensive PDF report...")
             
+            # Run Quality Analysis
+            print("[*] Running Quality Analysis...")
+            try:
+                from quality_analyzer import analyze_quality
+                quality_results = analyze_quality(root)
+                print(f"[+] Quality Analysis Complete: {quality_results['summary']['total_issues']} issues found")
+            except Exception as e:
+                print(f"[!] Warning: Quality analysis failed: {e}")
+                quality_results = None
+            
+            # Run Anti-Pattern Detection
+            print("[*] Running Anti-Pattern Detection...")
+            try:
+                from antipattern_detector import detect_antipatterns
+                antipattern_results = detect_antipatterns(root)
+                print(f"[+] Anti-Pattern Detection Complete: {antipattern_results['summary']['total_issues']} issues found")
+            except Exception as e:
+                print(f"[!] Warning: Anti-pattern detection failed: {e}")
+                antipattern_results = None
+            
+            # Add quality and anti-pattern results to the main result
+            if quality_results:
+                result['quality_analysis'] = quality_results
+            if antipattern_results:
+                result['antipattern_analysis'] = antipattern_results
+            
+            # Generate PDF with all results
+            pdf_filename = "security_analysis_report.pdf"
             project_name = os.path.basename(os.path.abspath(root))
             pdf_gen = SecurityReportPDF(pdf_filename)
             pdf_gen.generate(result, project_name)
             
-            print(f"[+] PDF report generated: {pdf_filename}")
+            print(f"[+] Comprehensive PDF report generated: {pdf_filename}")
+            
+            # Print summary
+            total_issues = 0
+            if quality_results:
+                total_issues += quality_results['summary']['total_issues']
+            if antipattern_results:
+                total_issues += antipattern_results['summary']['total_issues']
+            if result.get('risk_assessment'):
+                total_issues += result['risk_assessment'].get('total_findings', 0)
+            
+            print(f"[+] Total issues found across all analyzers: {total_issues}")
+            
         except ImportError as e:
             print(f"[!] PDF generation requires additional libraries:")
             print(f"    pip install reportlab matplotlib")
             print(f"[!] Error: {e}")
         except Exception as e:
             print(f"[!] Error generating PDF: {e}")
+            import traceback
+            traceback.print_exc()
     
     # Generate JSON if requested
     if json_output:

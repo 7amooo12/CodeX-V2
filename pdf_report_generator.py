@@ -505,35 +505,689 @@ class SecurityReportPDF:
         self.story.append(table)
         self.story.append(PageBreak())
     
+    def add_quality_findings_section(self, quality_results):
+        """Add code quality and maintainability findings section"""
+        self.story.append(Paragraph("CODE QUALITY & MAINTAINABILITY ANALYSIS", self.styles['SectionHeader']))
+        self.story.append(Spacer(1, 0.2*inch))
+        
+        if not quality_results or 'findings' not in quality_results:
+            self.story.append(Paragraph(
+                "✓ Quality analysis not performed or module not loaded.",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.3*inch))
+            return
+        
+        findings = quality_results['findings']
+        summary = quality_results.get('summary', {})
+        
+        # Summary statistics with visual styling
+        total_issues = summary.get('total_issues', 0)
+        
+        if total_issues == 0:
+            self.story.append(Paragraph(
+                "✓ No code quality issues detected! Your code follows best practices.",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.3*inch))
+            return
+        
+        summary_text = f"""
+        <b>Total Quality Issues: {total_issues}</b><br/>
+        <font color="#e67e22">● Empty Catch Blocks: {summary.get('total_empty_catch', 0)}</font><br/>
+        <font color="#c0392b">● Infinite Loops: {summary.get('total_infinite_loops', 0)}</font><br/>
+        <font color="#f39c12">● Dead/Unreachable Code: {summary.get('total_dead_code', 0)}</font><br/>
+        <font color="#3498db">● Naming Inconsistencies: {summary.get('total_naming_issues', 0)}</font><br/>
+        """
+        
+        self.story.append(Paragraph(summary_text, self.styles['Normal']))
+        self.story.append(Spacer(1, 0.3*inch))
+        
+        # 1. EMPTY CATCH BLOCKS
+        if findings.get('empty_catch_blocks'):
+            empty_catch = findings['empty_catch_blocks']
+            self.story.append(Paragraph(
+                f"<b><font color='#e67e22'>⚠️ EMPTY CATCH BLOCKS - {len(empty_catch)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>Empty catch blocks suppress errors without handling them, making debugging difficult.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Language', 'Code Snippet']]
+            
+            for i, finding in enumerate(empty_catch[:20], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:20]
+                line = str(finding.get('line', 'N/A'))
+                language = finding.get('language', 'N/A')[:12]
+                snippet = finding.get('code_snippet', '')[:40]
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    language,
+                    snippet
+                ])
+            
+            catch_table = Table(table_data, colWidths=[0.3*inch, 1.6*inch, 0.5*inch, 0.8*inch, 2.8*inch])
+            catch_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#e67e22')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.lightyellow, colors.white])
+            ]))
+            
+            self.story.append(catch_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Add proper error handling logic inside catch blocks<br/>"
+                "• At minimum, log the error for debugging purposes<br/>"
+                "• Consider rethrowing if you can't handle the error",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.2*inch))
+        
+        # 2. INFINITE LOOPS
+        if findings.get('infinite_loops'):
+            infinite_loops = findings['infinite_loops']
+            self.story.append(Paragraph(
+                f"<b><font color='#c0392b'>🔥 INFINITE LOOPS - {len(infinite_loops)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>Infinite loops without break conditions can cause application hangs and resource exhaustion.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Language', 'Code Pattern']]
+            
+            for i, finding in enumerate(infinite_loops[:20], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:20]
+                line = str(finding.get('line', 'N/A'))
+                language = finding.get('language', 'N/A')[:12]
+                snippet = finding.get('code_snippet', '')[:40]
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    language,
+                    snippet
+                ])
+            
+            loop_table = Table(table_data, colWidths=[0.3*inch, 1.6*inch, 0.5*inch, 0.8*inch, 2.8*inch])
+            loop_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#c0392b')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.mistyrose, colors.white])
+            ]))
+            
+            self.story.append(loop_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Add explicit break conditions to infinite loops<br/>"
+                "• Use event-driven patterns instead of polling loops<br/>"
+                "• Add timeout mechanisms for safety",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.2*inch))
+        
+        # 3. DEAD/UNREACHABLE CODE
+        if findings.get('dead_code'):
+            dead_code = findings['dead_code']
+            self.story.append(Paragraph(
+                f"<b><font color='#f39c12'>⚡ DEAD/UNREACHABLE CODE - {len(dead_code)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>Unreachable code clutters the codebase and can confuse developers.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Type', 'Code Preview']]
+            
+            for i, finding in enumerate(dead_code[:20], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:20]
+                line = str(finding.get('line', 'N/A'))
+                dead_type = finding.get('type', 'N/A')[:20]
+                snippet = finding.get('code_snippet', '')[:35]
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    dead_type,
+                    snippet
+                ])
+            
+            dead_table = Table(table_data, colWidths=[0.3*inch, 1.5*inch, 0.5*inch, 1.6*inch, 2.1*inch])
+            dead_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#f39c12')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.lemonchiffon, colors.white])
+            ]))
+            
+            self.story.append(dead_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Remove all unreachable code after return statements<br/>"
+                "• Clean up dead code paths to improve maintainability<br/>"
+                "• Use static analysis tools to detect dead code regularly",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.2*inch))
+        
+        # 4. NAMING INCONSISTENCIES
+        if findings.get('inconsistent_naming'):
+            naming_issues = findings['inconsistent_naming']
+            self.story.append(Paragraph(
+                f"<b><font color='#3498db'>📝 NAMING INCONSISTENCIES - {len(naming_issues)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>Inconsistent naming conventions reduce code readability and maintainability.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Identifier', 'Actual', 'Expected']]
+            
+            for i, finding in enumerate(naming_issues[:25], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:18]
+                line = str(finding.get('line', 'N/A'))
+                identifier = finding.get('identifier', 'N/A')[:20]
+                actual = finding.get('actual_convention', 'N/A')[:15]
+                expected = finding.get('expected_convention', 'N/A')[:15]
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    identifier,
+                    actual,
+                    expected
+                ])
+            
+            naming_table = Table(table_data, colWidths=[0.3*inch, 1.4*inch, 0.5*inch, 1.5*inch, 1.1*inch, 1.2*inch])
+            naming_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3498db')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.lightblue, colors.white])
+            ]))
+            
+            self.story.append(naming_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Follow consistent naming conventions for your language<br/>"
+                "• Python: snake_case for functions/variables, PascalCase for classes<br/>"
+                "• JavaScript/Java: camelCase for functions/variables, PascalCase for classes<br/>"
+                "• Use linters to enforce naming conventions automatically",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.2*inch))
+        
+        # Statistics breakdown
+        if summary.get('issues_by_language'):
+            self.story.append(Spacer(1, 0.2*inch))
+            self.story.append(Paragraph("<b>Issues by Language:</b>", self.styles['Heading3']))
+            
+            lang_data = [['Language', 'Issues', 'Percentage']]
+            total = summary['total_issues']
+            
+            for lang, count in sorted(summary['issues_by_language'].items(), key=lambda x: x[1], reverse=True)[:10]:
+                percentage = f"{(count/total*100):.1f}%"
+                lang_data.append([lang.title(), str(count), percentage])
+            
+            lang_table = Table(lang_data, colWidths=[2*inch, 1.5*inch, 1.5*inch])
+            lang_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#34495e')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.lightgrey, colors.white])
+            ]))
+            
+            self.story.append(lang_table)
+        
+        self.story.append(PageBreak())
+    
+    def add_antipattern_findings_section(self, antipattern_results):
+        """Add anti-pattern and security issues findings section"""
+        self.story.append(Paragraph("ANTI-PATTERN & SECURITY ISSUES DETECTION", self.styles['SectionHeader']))
+        self.story.append(Spacer(1, 0.2*inch))
+        
+        if not antipattern_results or 'findings' not in antipattern_results:
+            self.story.append(Paragraph(
+                "✓ Anti-pattern analysis not performed or module not loaded.",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.3*inch))
+            return
+        
+        findings = antipattern_results['findings']
+        summary = antipattern_results.get('summary', {})
+        
+        # Summary statistics
+        total_issues = summary.get('total_issues', 0)
+        
+        if total_issues == 0:
+            self.story.append(Paragraph(
+                "✓ No anti-patterns or security issues detected! Your code follows best practices.",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.3*inch))
+            return
+        
+        summary_text = f"""
+        <b>Total Anti-Pattern Issues: {total_issues}</b><br/>
+        <font color="#c0392b">● Password Variables: {summary.get('total_password_vars', 0)}</font><br/>
+        <font color="#c0392b">● SQL Concatenation: {summary.get('total_sql_concat', 0)}</font><br/>
+        <font color="#e67e22">● API Without Timeout: {summary.get('total_api_timeout', 0)}</font><br/>
+        <font color="#e67e22">● Unsafe File Paths: {summary.get('total_unsafe_paths', 0)}</font><br/>
+        <font color="#f39c12">● Dead Code: {summary.get('total_dead_code', 0)}</font><br/>
+        <font color="#c0392b">● .env Issues: {summary.get('total_env_issues', 0)}</font><br/>
+        """
+        
+        self.story.append(Paragraph(summary_text, self.styles['Normal']))
+        self.story.append(Spacer(1, 0.3*inch))
+        
+        # 1. PASSWORD VARIABLES
+        if findings.get('password_variables'):
+            password_vars = findings['password_variables']
+            self.story.append(Paragraph(
+                f"<b><font color='#c0392b'>🔐 PASSWORD/SECRET VARIABLES - {len(password_vars)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>Hardcoded passwords and secrets pose critical security risks.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Variable', 'Language', 'Severity']]
+            
+            for i, finding in enumerate(password_vars[:20], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:18]
+                line = str(finding.get('line', 'N/A'))
+                var_name = finding.get('variable_name', 'N/A')[:20]
+                language = finding.get('language', 'N/A')[:10]
+                severity = finding.get('severity', 'critical').upper()
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    var_name,
+                    language,
+                    severity
+                ])
+            
+            pwd_table = Table(table_data, colWidths=[0.3*inch, 1.5*inch, 0.5*inch, 1.5*inch, 0.8*inch, 0.9*inch])
+            pwd_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#c0392b')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('ALIGN', (5, 0), (5, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.mistyrose, colors.white])
+            ]))
+            
+            self.story.append(pwd_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Use environment variables instead of hardcoded secrets<br/>"
+                "• Implement proper secret management (Vault, AWS Secrets Manager)<br/>"
+                "• Never commit secrets to version control",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.2*inch))
+        
+        # 2. SQL CONCATENATION
+        if findings.get('sql_concatenation'):
+            sql_issues = findings['sql_concatenation']
+            self.story.append(Paragraph(
+                f"<b><font color='#c0392b'>💉 SQL INJECTION RISKS - {len(sql_issues)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>SQL queries built with string concatenation are vulnerable to SQL injection attacks.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Pattern', 'Language']]
+            
+            for i, finding in enumerate(sql_issues[:20], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:22]
+                line = str(finding.get('line', 'N/A'))
+                pattern = finding.get('pattern', 'N/A')[:25]
+                language = finding.get('language', 'N/A')[:12]
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    pattern,
+                    language
+                ])
+            
+            sql_table = Table(table_data, colWidths=[0.3*inch, 1.8*inch, 0.5*inch, 2.2*inch, 1.2*inch])
+            sql_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#c0392b')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.mistyrose, colors.white])
+            ]))
+            
+            self.story.append(sql_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Use parameterized queries with placeholders (?, %s)<br/>"
+                "• Implement ORM libraries (SQLAlchemy, Sequelize, Django ORM)<br/>"
+                "• Never concatenate user input into SQL queries",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.2*inch))
+        
+        # 3. API WITHOUT TIMEOUT
+        if findings.get('api_without_timeout'):
+            api_issues = findings['api_without_timeout']
+            self.story.append(Paragraph(
+                f"<b><font color='#e67e22'>⏱️ API CALLS WITHOUT TIMEOUT - {len(api_issues)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>API calls without timeout can cause application hangs and resource exhaustion.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Method', 'Language']]
+            
+            for i, finding in enumerate(api_issues[:20], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:25]
+                line = str(finding.get('line', 'N/A'))
+                method = finding.get('method', 'N/A')[:20]
+                language = finding.get('language', 'N/A')[:12]
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    method,
+                    language
+                ])
+            
+            api_table = Table(table_data, colWidths=[0.3*inch, 2*inch, 0.5*inch, 1.7*inch, 1.5*inch])
+            api_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#e67e22')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.lightyellow, colors.white])
+            ]))
+            
+            self.story.append(api_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Python: Add timeout parameter to requests.get/post()<br/>"
+                "• JavaScript: Use AbortController for fetch() or timeout config for axios<br/>"
+                "• Set reasonable timeout values (e.g., 30 seconds for normal API calls)",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.2*inch))
+        
+        # 4. UNSAFE FILE PATHS
+        if findings.get('unsafe_file_paths'):
+            path_issues = findings['unsafe_file_paths']
+            self.story.append(Paragraph(
+                f"<b><font color='#e67e22'>📁 UNSAFE FILE PATH ACCESS - {len(path_issues)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>File operations with unsanitized user input can lead to path traversal attacks.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Operation', 'Language']]
+            
+            for i, finding in enumerate(path_issues[:20], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:22]
+                line = str(finding.get('line', 'N/A'))
+                operation = finding.get('operation', 'N/A')[:22]
+                language = finding.get('language', 'N/A')[:12]
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    operation,
+                    language
+                ])
+            
+            path_table = Table(table_data, colWidths=[0.3*inch, 1.8*inch, 0.5*inch, 2*inch, 1.4*inch])
+            path_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#e67e22')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.lightyellow, colors.white])
+            ]))
+            
+            self.story.append(path_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Validate and sanitize all file paths from user input<br/>"
+                "• Use os.path.join() or path.join() for safe path construction<br/>"
+                "• Check paths against allowed directories (whitelist approach)<br/>"
+                "• Reject paths containing '..' or absolute paths from users",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.2*inch))
+        
+        # 5. ENV FILE ISSUES
+        if findings.get('env_issues'):
+            env_issues = findings['env_issues']
+            self.story.append(Paragraph(
+                f"<b><font color='#c0392b'>⚙️ .ENV FILE SECURITY - {len(env_issues)} findings</font></b>",
+                self.styles['Heading3']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            self.story.append(Paragraph(
+                "<i>.env files containing secrets must be properly secured.</i>",
+                self.styles['Normal']
+            ))
+            self.story.append(Spacer(1, 0.1*inch))
+            
+            # Create table
+            table_data = [['#', 'File', 'Line', 'Issue']]
+            
+            for i, finding in enumerate(env_issues[:15], 1):
+                file_name = os.path.basename(finding.get('file', 'N/A'))[:30]
+                line = str(finding.get('line', 'N/A'))
+                issue = finding.get('type', 'N/A')[:30]
+                
+                table_data.append([
+                    str(i),
+                    file_name,
+                    line,
+                    issue
+                ])
+            
+            env_table = Table(table_data, colWidths=[0.3*inch, 2.5*inch, 0.5*inch, 2.7*inch])
+            env_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#c0392b')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, 0), 8),
+                ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+                ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('FONTSIZE', (0, 1), (-1, -1), 7),
+                ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.mistyrose, colors.white])
+            ]))
+            
+            self.story.append(env_table)
+            self.story.append(Spacer(1, 0.15*inch))
+            
+            # Recommendations
+            self.story.append(Paragraph(
+                "<b>Recommendations:</b><br/>"
+                "• Ensure .env files are in .gitignore<br/>"
+                "• Never commit .env files to version control<br/>"
+                "• Provide .env.example with placeholder values<br/>"
+                "• Use proper secret management in production",
+                self.styles['Normal']
+            ))
+        
+        self.story.append(PageBreak())
+    
     def add_recommendations_section(self):
-        """Add security recommendations"""
-        self.story.append(Paragraph("SECURITY RECOMMENDATIONS", self.styles['SectionHeader']))
+        """Add security and quality recommendations"""
+        self.story.append(Paragraph("SECURITY & QUALITY RECOMMENDATIONS", self.styles['SectionHeader']))
         self.story.append(Spacer(1, 0.2*inch))
         
         recommendations = [
             ("🔴 CRITICAL", [
-                "Remove all hardcoded secrets immediately",
+                "Remove all hardcoded secrets and passwords immediately",
+                "Fix SQL injection vulnerabilities - use parameterized queries",
                 "Fix code execution vulnerabilities (eval, exec)",
                 "Address command injection flaws",
-                "Remediate insecure deserialization"
+                "Remediate insecure deserialization",
+                "Fix infinite loops that can cause system hangs",
+                "Secure .env files and never commit them to version control"
             ]),
             ("🟠 HIGH", [
                 "Implement input validation for all user inputs",
-                "Use parameterized queries for database operations",
+                "Use parameterized queries for ALL database operations",
                 "Replace weak cryptographic algorithms",
-                "Sanitize all file paths"
+                "Sanitize all file paths from user input",
+                "Add proper error handling in empty catch blocks",
+                "Add timeout to all API/HTTP requests",
+                "Validate file paths against path traversal attacks"
             ]),
             ("🟡 MEDIUM", [
                 "Implement logging and monitoring",
                 "Set up automated security scanning",
                 "Conduct regular security code reviews",
-                "Use secret management tools (Vault, AWS Secrets Manager)"
+                "Use secret management tools (Vault, AWS Secrets Manager)",
+                "Remove dead/unreachable code to improve maintainability",
+                "Add timeout parameters to prevent resource exhaustion"
             ]),
             ("🟢 BEST PRACTICES", [
                 "Implement defense-in-depth strategy",
                 "Follow principle of least privilege",
                 "Keep dependencies up to date",
-                "Document security assumptions"
+                "Document security assumptions",
+                "Enforce consistent naming conventions across the codebase",
+                "Use linters and formatters for code quality",
+                "Use environment variables for configuration",
+                "Implement ORM libraries instead of raw SQL"
             ])
         ]
         
@@ -1389,6 +2043,16 @@ class SecurityReportPDF:
         # Authentication & session security analysis (NEW)
         self.add_authentication_section(
             analysis_result.get('security_analysis', {})
+        )
+        
+        # Code Quality & Maintainability Analysis (NEW)
+        self.add_quality_findings_section(
+            analysis_result.get('quality_analysis', {})
+        )
+        
+        # Anti-Pattern & Security Issues Detection (NEW)
+        self.add_antipattern_findings_section(
+            analysis_result.get('antipattern_analysis', {})
         )
         
         # Recommendations
