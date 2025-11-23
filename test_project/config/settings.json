@@ -1,0 +1,13 @@
+{
+  "debug": true,
+  "port": 8080,
+  "api_key": "json-secret-55555",
+  "database": {
+    "host": "localhost",
+    "user": "admin",
+    "password": "admin123"
+  },
+  "cors": {
+    "allowed_origins": ["*"] // unsafe
+  }
+}
