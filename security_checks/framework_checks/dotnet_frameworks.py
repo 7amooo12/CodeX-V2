@@ -382,3 +382,4 @@ class DotNetFrameworkChecker(BaseSecurityChecker):
         return findings
 
 
+

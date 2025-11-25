@@ -21,6 +21,9 @@ from .framework_checks.python_frameworks import PythonFrameworkChecker
 from .framework_checks.javascript_frameworks import JavaScriptFrameworkChecker
 from .framework_checks.java_frameworks import JavaFrameworkChecker
 from .framework_checks.dotnet_frameworks import DotNetFrameworkChecker
+from .authentication_checker import AuthenticationSecurityChecker
+from .cryptography_checker import CryptographyMisuseDetector
+from .validation_checker import InputValidationSanitizationChecker
 
 
 def run_all_security_checks(files_data: dict) -> list:
@@ -79,8 +82,12 @@ __all__ = [
     'JavaScriptFrameworkChecker',
     'JavaFrameworkChecker',
     'DotNetFrameworkChecker',
+    'AuthenticationSecurityChecker',
+    'CryptographyMisuseDetector',
+    'InputValidationSanitizationChecker',
     'run_all_security_checks',
     'load_code'
 ]
+
 
 

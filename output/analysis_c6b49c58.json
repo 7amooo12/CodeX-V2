@@ -1,0 +1,682 @@
+{
+  "metadata": {
+    "project_path": "D:\\medibook+mac\\medibook\\routes",
+    "scan_time": "2025-11-25T14:13:23.415758",
+    "analyzer_version": "2.0"
+  },
+  "dangerous_functions": [
+    {
+      "function": "require",
+      "category": "file_operations",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 402,
+      "context": "require __DIR__.'/auth.php';"
+    },
+    {
+      "function": "require",
+      "category": "file_operations",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 403,
+      "context": "require __DIR__.'/doctor.php';"
+    },
+    {
+      "function": "require",
+      "category": "file_operations",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 404,
+      "context": "require __DIR__.'/patient.php';"
+    },
+    {
+      "function": "require",
+      "category": "file_operations",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 405,
+      "context": "require __DIR__.'/upgrade.php';"
+    }
+  ],
+  "secrets": [],
+  "taint_analysis": [],
+  "taint_flows": [],
+  "validation_issues": [
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\api.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\console.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\doctor.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\patient.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\upgrade.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    }
+  ],
+  "crypto_issues": [],
+  "auth_issues": [
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\api.php",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\api.php",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    },
+    {
+      "type": "missing_session_rotation",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "message": "Login functionality detected without session rotation",
+      "recommendation": "Regenerate session ID after login to prevent session fixation: session.regenerate() or session_regenerate_id()"
+    },
+    {
+      "type": "missing_mfa",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "message": "Authentication code without MFA/2FA implementation",
+      "recommendation": "Implement multi-factor authentication for sensitive applications"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    },
+    {
+      "type": "missing_session_rotation",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "message": "Login functionality detected without session rotation",
+      "recommendation": "Regenerate session ID after login to prevent session fixation: session.regenerate() or session_regenerate_id()"
+    },
+    {
+      "type": "missing_mfa",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "message": "Authentication code without MFA/2FA implementation",
+      "recommendation": "Implement multi-factor authentication for sensitive applications"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    }
+  ],
+  "quality_issues": {
+    "empty_catch_blocks": [],
+    "infinite_loops": [],
+    "dead_code": [],
+    "inconsistent_naming": []
+  },
+  "quality_analysis": {
+    "findings": {
+      "empty_catch_blocks": [],
+      "infinite_loops": [],
+      "dead_code": [],
+      "inconsistent_naming": []
+    },
+    "summary": {
+      "total_issues": 0,
+      "total_empty_catch": 0,
+      "total_infinite_loops": 0,
+      "total_dead_code": 0,
+      "total_naming_issues": 0
+    }
+  },
+  "antipatterns": {
+    "password_variables": [],
+    "sql_concatenation": [],
+    "api_without_timeout": [],
+    "unsafe_file_paths": [],
+    "dead_code": [],
+    "env_issues": []
+  },
+  "antipattern_analysis": {
+    "findings": {
+      "password_variables": [],
+      "sql_concatenation": [],
+      "api_without_timeout": [],
+      "unsafe_file_paths": [],
+      "dead_code": [],
+      "env_issues": []
+    },
+    "summary": {
+      "total_issues": 0,
+      "password_variables": 0,
+      "sql_concatenation": 0,
+      "api_without_timeout": 0,
+      "unsafe_file_paths": 0
+    }
+  },
+  "framework_issues": [],
+  "framework_security": [],
+  "framework_security_findings": [],
+  "vulnerability_scan": {
+    "project_path": "D:\\medibook+mac\\medibook\\routes",
+    "scan_timestamp": "2025-11-25T14:13:23.605617",
+    "summary": {
+      "total_dependencies": 0,
+      "vulnerable_packages": 0,
+      "total_vulnerabilities": 0,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "info": 0,
+      "scan_duration": "0.00s",
+      "scan_timestamp": "2025-11-25T14:13:23.605617"
+    },
+    "packages": [],
+    "errors": []
+  },
+  "summary": {
+    "dangerous_functions_count": 4,
+    "secrets_count": 0,
+    "taint_sources_count": 0,
+    "validation_issues_count": 8,
+    "crypto_issues_count": 0,
+    "auth_issues_count": 11,
+    "framework_issues_count": 0,
+    "quality_issues_count": 0,
+    "antipattern_count": 0,
+    "vulnerability_count": 0,
+    "files_scanned": 8,
+    "total_issues": 23,
+    "risk_level": "HIGH"
+  },
+  "files_scanned": [
+    {
+      "path": "D:\\medibook+mac\\medibook\\routes\\api.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\medibook+mac\\medibook\\routes\\console.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\medibook+mac\\medibook\\routes\\doctor.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\medibook+mac\\medibook\\routes\\patient.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\medibook+mac\\medibook\\routes\\upgrade.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "language": "php",
+      "extension": ".php"
+    }
+  ],
+  "file_tree": {
+    "D:": {
+      "name": "D:",
+      "path": "D:",
+      "is_file": false,
+      "children": {
+        "medibook+mac": {
+          "name": "medibook+mac",
+          "path": "D:/medibook+mac",
+          "is_file": false,
+          "children": {
+            "medibook": {
+              "name": "medibook",
+              "path": "D:/medibook+mac/medibook",
+              "is_file": false,
+              "children": {
+                "routes": {
+                  "name": "routes",
+                  "path": "D:/medibook+mac/medibook/routes",
+                  "is_file": false,
+                  "children": {
+                    "api.php": {
+                      "name": "api.php",
+                      "path": "D:/medibook+mac/medibook/routes/api.php",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "auth.php": {
+                      "name": "auth.php",
+                      "path": "D:/medibook+mac/medibook/routes/auth.php",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "channels.php": {
+                      "name": "channels.php",
+                      "path": "D:/medibook+mac/medibook/routes/channels.php",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "console.php": {
+                      "name": "console.php",
+                      "path": "D:/medibook+mac/medibook/routes/console.php",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "doctor.php": {
+                      "name": "doctor.php",
+                      "path": "D:/medibook+mac/medibook/routes/doctor.php",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "patient.php": {
+                      "name": "patient.php",
+                      "path": "D:/medibook+mac/medibook/routes/patient.php",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "upgrade.php": {
+                      "name": "upgrade.php",
+                      "path": "D:/medibook+mac/medibook/routes/upgrade.php",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "web.php": {
+                      "name": "web.php",
+                      "path": "D:/medibook+mac/medibook/routes/web.php",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 4,
+                      "severity": "LOW"
+                    }
+                  },
+                  "issue_count": 0,
+                  "severity": "LOW"
+                }
+              },
+              "issue_count": 0,
+              "severity": "LOW"
+            }
+          },
+          "issue_count": 0,
+          "severity": "LOW"
+        }
+      },
+      "issue_count": 0,
+      "severity": "LOW"
+    }
+  },
+  "unified_findings": [
+    {
+      "id": "DF-0001",
+      "category": "Dangerous Function",
+      "vulnerability": "require",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 402,
+      "severity": "MEDIUM",
+      "description": "require __DIR__.'/auth.php';",
+      "type": "file_operations"
+    },
+    {
+      "id": "DF-0002",
+      "category": "Dangerous Function",
+      "vulnerability": "require",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 403,
+      "severity": "MEDIUM",
+      "description": "require __DIR__.'/doctor.php';",
+      "type": "file_operations"
+    },
+    {
+      "id": "DF-0003",
+      "category": "Dangerous Function",
+      "vulnerability": "require",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 404,
+      "severity": "MEDIUM",
+      "description": "require __DIR__.'/patient.php';",
+      "type": "file_operations"
+    },
+    {
+      "id": "DF-0004",
+      "category": "Dangerous Function",
+      "vulnerability": "require",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 405,
+      "severity": "MEDIUM",
+      "description": "require __DIR__.'/upgrade.php';",
+      "type": "file_operations"
+    },
+    {
+      "id": "VAL-0005",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\api.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0006",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0007",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0008",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\console.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0009",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\doctor.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0010",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\patient.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0011",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\upgrade.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0012",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "AUTH-0013",
+      "category": "Authentication",
+      "vulnerability": "missing_password_length_check",
+      "file": "D:\\medibook+mac\\medibook\\routes\\api.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Password handling without length validation",
+      "type": "missing_password_length_check"
+    },
+    {
+      "id": "AUTH-0014",
+      "category": "Authentication",
+      "vulnerability": "missing_password_complexity",
+      "file": "D:\\medibook+mac\\medibook\\routes\\api.php",
+      "line": 0,
+      "severity": "LOW",
+      "description": "Password handling without complexity requirements",
+      "type": "missing_password_complexity"
+    },
+    {
+      "id": "AUTH-0015",
+      "category": "Authentication",
+      "vulnerability": "missing_session_rotation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Login functionality detected without session rotation",
+      "type": "missing_session_rotation"
+    },
+    {
+      "id": "AUTH-0016",
+      "category": "Authentication",
+      "vulnerability": "missing_mfa",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Authentication code without MFA/2FA implementation",
+      "type": "missing_mfa"
+    },
+    {
+      "id": "AUTH-0017",
+      "category": "Authentication",
+      "vulnerability": "missing_password_length_check",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Password handling without length validation",
+      "type": "missing_password_length_check"
+    },
+    {
+      "id": "AUTH-0018",
+      "category": "Authentication",
+      "vulnerability": "missing_password_complexity",
+      "file": "D:\\medibook+mac\\medibook\\routes\\auth.php",
+      "line": 0,
+      "severity": "LOW",
+      "description": "Password handling without complexity requirements",
+      "type": "missing_password_complexity"
+    },
+    {
+      "id": "AUTH-0019",
+      "category": "Authentication",
+      "vulnerability": "missing_session_rotation",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Login functionality detected without session rotation",
+      "type": "missing_session_rotation"
+    },
+    {
+      "id": "AUTH-0020",
+      "category": "Authentication",
+      "vulnerability": "missing_mfa",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Authentication code without MFA/2FA implementation",
+      "type": "missing_mfa"
+    },
+    {
+      "id": "AUTH-0021",
+      "category": "Authentication",
+      "vulnerability": "missing_password_length_check",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Password handling without length validation",
+      "type": "missing_password_length_check"
+    },
+    {
+      "id": "AUTH-0022",
+      "category": "Authentication",
+      "vulnerability": "missing_password_complexity",
+      "file": "D:\\medibook+mac\\medibook\\routes\\channels.php",
+      "line": 0,
+      "severity": "LOW",
+      "description": "Password handling without complexity requirements",
+      "type": "missing_password_complexity"
+    },
+    {
+      "id": "AUTH-0023",
+      "category": "Authentication",
+      "vulnerability": "missing_password_length_check",
+      "file": "D:\\medibook+mac\\medibook\\routes\\web.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Password handling without length validation",
+      "type": "missing_password_length_check"
+    }
+  ],
+  "recommendations": [
+    {
+      "category": "Code Security",
+      "priority": "HIGH",
+      "title": "Replace Dangerous Functions",
+      "description": "Replace or properly sanitize dangerous function calls.",
+      "steps": [
+        "Review all uses of eval(), exec(), and similar functions",
+        "Implement input validation and sanitization",
+        "Use safe alternatives when available",
+        "Apply principle of least privilege"
+      ]
+    }
+  ],
+  "risk_level": "HIGH"
+}

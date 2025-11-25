@@ -1,0 +1,385 @@
+{
+  "metadata": {
+    "project_path": "D:\\project\\test_project",
+    "scan_time": "2025-11-24T11:59:54.199500",
+    "analyzer_version": "2.0"
+  },
+  "dangerous_functions": [
+    {
+      "function": "Function",
+      "category": "code_execution",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\script.js",
+      "line": 6,
+      "context": "function getUser(id) {"
+    },
+    {
+      "function": "Function",
+      "category": "code_execution",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\script.js",
+      "line": 11,
+      "context": "function startServer() {"
+    },
+    {
+      "function": "eval",
+      "category": "code_execution",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 25,
+      "context": "eval(\"echo 'This is unsafe';\");  // extremely dangerous"
+    },
+    {
+      "function": "system",
+      "category": "command_injection",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 12,
+      "context": "function systemRun($cmd) {"
+    },
+    {
+      "function": "shell_exec",
+      "category": "command_injection",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 13,
+      "context": "return shell_exec($cmd); // dangerous"
+    },
+    {
+      "function": "exec",
+      "category": "command_injection",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 13,
+      "context": "return shell_exec($cmd); // dangerous"
+    },
+    {
+      "function": "include",
+      "category": "file_operations",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 3,
+      "context": "include \"config.php\";"
+    }
+  ],
+  "secrets": [
+    {
+      "type": "password",
+      "value": "PASSWORD = \"php-password-9999\"",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 5
+    }
+  ],
+  "taint_analysis": [],
+  "validation_issues": [
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\script.js",
+      "message": "No input validation detected for javascript",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "unsanitized_sink",
+      "severity": "CRITICAL",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "sink": "eval(",
+      "message": "'eval(' used without sanitization in php",
+      "recommendation": "Always sanitize input before using eval(. Use appropriate escaping/encoding functions"
+    },
+    {
+      "type": "unsanitized_sink",
+      "severity": "CRITICAL",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "sink": "exec(",
+      "message": "'exec(' used without sanitization in php",
+      "recommendation": "Always sanitize input before using exec(. Use appropriate escaping/encoding functions"
+    },
+    {
+      "type": "unsanitized_sink",
+      "severity": "CRITICAL",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "sink": "shell_exec(",
+      "message": "'shell_exec(' used without sanitization in php",
+      "recommendation": "Always sanitize input before using shell_exec(. Use appropriate escaping/encoding functions"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "python",
+      "file": "D:\\project\\test_project\\utils.py",
+      "message": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\utils.py",
+      "message": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "env",
+      "file": "D:\\project\\test_project\\config\\creds.env",
+      "message": "No input validation detected for env",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "env",
+      "file": "D:\\project\\test_project\\config\\creds.env",
+      "message": "No boundary checks detected in env",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "No input validation detected for json",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "No boundary checks detected in json",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_json_schema",
+      "severity": "MEDIUM",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "JSON file has no schema validation defined",
+      "recommendation": "Define JSON Schema for validation"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "python",
+      "file": "D:\\project\\test_project\\src\\helper.py",
+      "message": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\src\\helper.py",
+      "message": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\src\\module.js",
+      "message": "No input validation detected for javascript",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\src\\module.js",
+      "message": "No boundary checks detected in javascript",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    }
+  ],
+  "crypto_issues": [],
+  "auth_issues": [
+    {
+      "type": "missing_session_rotation",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "Login functionality detected without session rotation",
+      "recommendation": "Regenerate session ID after login to prevent session fixation: session.regenerate() or session_regenerate_id()"
+    },
+    {
+      "type": "missing_mfa",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "Authentication code without MFA/2FA implementation",
+      "recommendation": "Implement multi-factor authentication for sensitive applications"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    },
+    {
+      "type": "missing_session_rotation",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "Login functionality detected without session rotation",
+      "recommendation": "Regenerate session ID after login to prevent session fixation: session.regenerate() or session_regenerate_id()"
+    },
+    {
+      "type": "missing_mfa",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "Authentication code without MFA/2FA implementation",
+      "recommendation": "Implement multi-factor authentication for sensitive applications"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    },
+    {
+      "type": "potential_auth_bypass",
+      "severity": "CRITICAL",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 18,
+      "pattern": "if ($user === \"admin\" && $pass === \"1234\") { // in",
+      "message": "Potential authentication bypass detected",
+      "recommendation": "Review authentication logic for hardcoded bypasses or weak conditions"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    }
+  ],
+  "quality_issues": {},
+  "antipatterns": {},
+  "framework_issues": [
+    {
+      "file": "D:\\project\\test_project\\script.js",
+      "issue": "Hardcoded credentials detected in Node.js code",
+      "severity": "critical",
+      "type": "exposure",
+      "line": 4,
+      "recommendation": "Move credentials to environment variables using process.env"
+    }
+  ],
+  "summary": {
+    "dangerous_functions_count": 7,
+    "secrets_count": 1,
+    "taint_sources_count": 0,
+    "validation_issues_count": 18,
+    "crypto_issues_count": 0,
+    "auth_issues_count": 11,
+    "framework_issues_count": 1,
+    "quality_issues_count": 0,
+    "antipattern_count": 0,
+    "files_scanned": 8,
+    "total_issues": 38,
+    "risk_level": "HIGH"
+  },
+  "files_scanned": [
+    {
+      "path": "D:\\project\\test_project\\app.py",
+      "language": "python",
+      "extension": ".py"
+    },
+    {
+      "path": "D:\\project\\test_project\\script.js",
+      "language": "javascript",
+      "extension": ".js"
+    },
+    {
+      "path": "D:\\project\\test_project\\server.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\project\\test_project\\utils.py",
+      "language": "python",
+      "extension": ".py"
+    },
+    {
+      "path": "D:\\project\\test_project\\config\\creds.env",
+      "language": "env",
+      "extension": ".env"
+    },
+    {
+      "path": "D:\\project\\test_project\\config\\settings.json",
+      "language": "json",
+      "extension": ".json"
+    },
+    {
+      "path": "D:\\project\\test_project\\src\\helper.py",
+      "language": "python",
+      "extension": ".py"
+    },
+    {
+      "path": "D:\\project\\test_project\\src\\module.js",
+      "language": "javascript",
+      "extension": ".js"
+    }
+  ],
+  "risk_level": "HIGH"
+}

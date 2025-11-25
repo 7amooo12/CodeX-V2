@@ -1,0 +1,3113 @@
+{
+  "metadata": {
+    "project_path": "D:\\project\\test_project",
+    "scan_time": "2025-11-25T13:55:41.794879",
+    "analyzer_version": "2.0"
+  },
+  "dangerous_functions": [
+    {
+      "function": "Function",
+      "category": "code_execution",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\script.js",
+      "line": 6,
+      "context": "function getUser(id) {"
+    },
+    {
+      "function": "Function",
+      "category": "code_execution",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\script.js",
+      "line": 11,
+      "context": "function startServer() {"
+    },
+    {
+      "function": "eval",
+      "category": "code_execution",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 25,
+      "context": "eval(\"echo 'This is unsafe';\");  // extremely dangerous"
+    },
+    {
+      "function": "system",
+      "category": "command_injection",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 12,
+      "context": "function systemRun($cmd) {"
+    },
+    {
+      "function": "shell_exec",
+      "category": "command_injection",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 13,
+      "context": "return shell_exec($cmd); // dangerous"
+    },
+    {
+      "function": "exec",
+      "category": "command_injection",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 13,
+      "context": "return shell_exec($cmd); // dangerous"
+    },
+    {
+      "function": "include",
+      "category": "file_operations",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 3,
+      "context": "include \"config.php\";"
+    }
+  ],
+  "secrets": [
+    {
+      "type": "password",
+      "value": "PASSWORD = \"php-password-9999\"",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 5
+    }
+  ],
+  "taint_analysis": [],
+  "taint_flows": [],
+  "validation_issues": [
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "json",
+      "file": "D:\\project\\test_project\\package.json",
+      "message": "No input validation detected for json",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "json",
+      "file": "D:\\project\\test_project\\package.json",
+      "message": "No boundary checks detected in json",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_json_schema",
+      "severity": "MEDIUM",
+      "language": "json",
+      "file": "D:\\project\\test_project\\package.json",
+      "message": "JSON file has no schema validation defined",
+      "recommendation": "Define JSON Schema for validation"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "unknown",
+      "file": "D:\\project\\test_project\\requirements.txt",
+      "message": "No input validation detected for unknown",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "unknown",
+      "file": "D:\\project\\test_project\\requirements.txt",
+      "message": "No boundary checks detected in unknown",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\script.js",
+      "message": "No input validation detected for javascript",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "unsanitized_sink",
+      "severity": "CRITICAL",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "sink": "eval(",
+      "message": "'eval(' used without sanitization in php",
+      "recommendation": "Always sanitize input before using eval(. Use appropriate escaping/encoding functions"
+    },
+    {
+      "type": "unsanitized_sink",
+      "severity": "CRITICAL",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "sink": "exec(",
+      "message": "'exec(' used without sanitization in php",
+      "recommendation": "Always sanitize input before using exec(. Use appropriate escaping/encoding functions"
+    },
+    {
+      "type": "unsanitized_sink",
+      "severity": "CRITICAL",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "sink": "shell_exec(",
+      "message": "'shell_exec(' used without sanitization in php",
+      "recommendation": "Always sanitize input before using shell_exec(. Use appropriate escaping/encoding functions"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "python",
+      "file": "D:\\project\\test_project\\utils.py",
+      "message": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\utils.py",
+      "message": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "env",
+      "file": "D:\\project\\test_project\\config\\creds.env",
+      "message": "No input validation detected for env",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "env",
+      "file": "D:\\project\\test_project\\config\\creds.env",
+      "message": "No boundary checks detected in env",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "No input validation detected for json",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "No boundary checks detected in json",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_json_schema",
+      "severity": "MEDIUM",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "JSON file has no schema validation defined",
+      "recommendation": "Define JSON Schema for validation"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "python",
+      "file": "D:\\project\\test_project\\src\\helper.py",
+      "message": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\src\\helper.py",
+      "message": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    },
+    {
+      "type": "missing_validation",
+      "severity": "HIGH",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\src\\module.js",
+      "message": "No input validation detected for javascript",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks"
+    },
+    {
+      "type": "missing_boundary_checks",
+      "severity": "MEDIUM",
+      "language": "javascript",
+      "file": "D:\\project\\test_project\\src\\module.js",
+      "message": "No boundary checks detected in javascript",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access"
+    }
+  ],
+  "crypto_issues": [],
+  "auth_issues": [
+    {
+      "type": "missing_session_rotation",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "Login functionality detected without session rotation",
+      "recommendation": "Regenerate session ID after login to prevent session fixation: session.regenerate() or session_regenerate_id()"
+    },
+    {
+      "type": "missing_mfa",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "Authentication code without MFA/2FA implementation",
+      "recommendation": "Implement multi-factor authentication for sensitive applications"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "python",
+      "file": "D:\\project\\test_project\\app.py",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    },
+    {
+      "type": "missing_session_rotation",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "Login functionality detected without session rotation",
+      "recommendation": "Regenerate session ID after login to prevent session fixation: session.regenerate() or session_regenerate_id()"
+    },
+    {
+      "type": "missing_mfa",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "Authentication code without MFA/2FA implementation",
+      "recommendation": "Implement multi-factor authentication for sensitive applications"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    },
+    {
+      "type": "potential_auth_bypass",
+      "severity": "CRITICAL",
+      "language": "php",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 18,
+      "pattern": "if ($user === \"admin\" && $pass === \"1234\") { // in",
+      "message": "Potential authentication bypass detected",
+      "recommendation": "Review authentication logic for hardcoded bypasses or weak conditions"
+    },
+    {
+      "type": "missing_password_length_check",
+      "severity": "MEDIUM",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "Password handling without length validation",
+      "recommendation": "Enforce minimum password length (at least 8-12 characters)"
+    },
+    {
+      "type": "missing_password_complexity",
+      "severity": "LOW",
+      "language": "json",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "message": "Password handling without complexity requirements",
+      "recommendation": "Enforce password complexity (uppercase, lowercase, numbers, special characters)"
+    }
+  ],
+  "quality_issues": {
+    "empty_catch_blocks": [],
+    "infinite_loops": [],
+    "dead_code": [],
+    "inconsistent_naming": []
+  },
+  "quality_analysis": {
+    "findings": {
+      "empty_catch_blocks": [],
+      "infinite_loops": [],
+      "dead_code": [],
+      "inconsistent_naming": []
+    },
+    "summary": {
+      "total_issues": 0,
+      "total_empty_catch": 0,
+      "total_infinite_loops": 0,
+      "total_dead_code": 0,
+      "total_naming_issues": 0
+    }
+  },
+  "antipatterns": {
+    "password_variables": [
+      {
+        "file": "D:\\project\\test_project\\app.py",
+        "line": 4,
+        "type": "Plain Password Variable",
+        "severity": "critical",
+        "language": "python",
+        "variable_name": "API_KEY",
+        "message": "Variable 'API_KEY' assigned plain password/secret. Use environment variables.",
+        "recommendation": "Use os.getenv() or python-dotenv to load secrets from environment"
+      }
+    ],
+    "sql_concatenation": [],
+    "api_without_timeout": [],
+    "unsafe_file_paths": [],
+    "dead_code": [
+      {
+        "file": "D:\\project\\test_project\\app.py",
+        "line": 10,
+        "type": "Unused Function",
+        "severity": "low",
+        "language": "python",
+        "identifier": "login",
+        "message": "Function 'login' defined but never called",
+        "recommendation": "Remove unused function or add it to __all__ if it's part of public API"
+      },
+      {
+        "file": "D:\\project\\test_project\\utils.py",
+        "line": 5,
+        "type": "Unused Function",
+        "severity": "low",
+        "language": "python",
+        "identifier": "add",
+        "message": "Function 'add' defined but never called",
+        "recommendation": "Remove unused function or add it to __all__ if it's part of public API"
+      },
+      {
+        "file": "D:\\project\\test_project\\src\\helper.py",
+        "line": 1,
+        "type": "Unused Function",
+        "severity": "low",
+        "language": "python",
+        "identifier": "helper_function",
+        "message": "Function 'helper_function' defined but never called",
+        "recommendation": "Remove unused function or add it to __all__ if it's part of public API"
+      }
+    ],
+    "env_issues": [
+      {
+        "file": "D:\\project\\test_project\\config\\creds.env",
+        "line": 1,
+        "type": "Password in .env",
+        "severity": "critical",
+        "language": "env",
+        "message": "Potential password/secret stored in .env file",
+        "recommendation": "Ensure .env is in .gitignore and not committed to repository"
+      }
+    ]
+  },
+  "antipattern_analysis": {
+    "findings": {
+      "password_variables": [
+        {
+          "file": "D:\\project\\test_project\\app.py",
+          "line": 4,
+          "type": "Plain Password Variable",
+          "severity": "critical",
+          "language": "python",
+          "variable_name": "API_KEY",
+          "message": "Variable 'API_KEY' assigned plain password/secret. Use environment variables.",
+          "recommendation": "Use os.getenv() or python-dotenv to load secrets from environment"
+        }
+      ],
+      "sql_concatenation": [],
+      "api_without_timeout": [],
+      "unsafe_file_paths": [],
+      "dead_code": [
+        {
+          "file": "D:\\project\\test_project\\app.py",
+          "line": 10,
+          "type": "Unused Function",
+          "severity": "low",
+          "language": "python",
+          "identifier": "login",
+          "message": "Function 'login' defined but never called",
+          "recommendation": "Remove unused function or add it to __all__ if it's part of public API"
+        },
+        {
+          "file": "D:\\project\\test_project\\utils.py",
+          "line": 5,
+          "type": "Unused Function",
+          "severity": "low",
+          "language": "python",
+          "identifier": "add",
+          "message": "Function 'add' defined but never called",
+          "recommendation": "Remove unused function or add it to __all__ if it's part of public API"
+        },
+        {
+          "file": "D:\\project\\test_project\\src\\helper.py",
+          "line": 1,
+          "type": "Unused Function",
+          "severity": "low",
+          "language": "python",
+          "identifier": "helper_function",
+          "message": "Function 'helper_function' defined but never called",
+          "recommendation": "Remove unused function or add it to __all__ if it's part of public API"
+        }
+      ],
+      "env_issues": [
+        {
+          "file": "D:\\project\\test_project\\config\\creds.env",
+          "line": 1,
+          "type": "Password in .env",
+          "severity": "critical",
+          "language": "env",
+          "message": "Potential password/secret stored in .env file",
+          "recommendation": "Ensure .env is in .gitignore and not committed to repository"
+        }
+      ]
+    },
+    "summary": {
+      "total_issues": 5,
+      "password_variables": 1,
+      "sql_concatenation": 0,
+      "api_without_timeout": 0,
+      "unsafe_file_paths": 0
+    }
+  },
+  "framework_issues": [
+    {
+      "file": "D:\\project\\test_project\\script.js",
+      "issue": "Hardcoded credentials detected in Node.js code",
+      "severity": "critical",
+      "type": "exposure",
+      "line": 4,
+      "recommendation": "Move credentials to environment variables using process.env"
+    }
+  ],
+  "framework_security": [
+    {
+      "file": "D:\\project\\test_project\\script.js",
+      "issue": "Hardcoded credentials detected in Node.js code",
+      "severity": "critical",
+      "type": "exposure",
+      "line": 4,
+      "recommendation": "Move credentials to environment variables using process.env"
+    }
+  ],
+  "framework_security_findings": [
+    {
+      "file": "D:\\project\\test_project\\script.js",
+      "issue": "Hardcoded credentials detected in Node.js code",
+      "severity": "critical",
+      "type": "exposure",
+      "line": 4,
+      "recommendation": "Move credentials to environment variables using process.env"
+    }
+  ],
+  "vulnerability_scan": {
+    "project_path": "D:\\project\\test_project",
+    "scan_timestamp": "2025-11-25T13:55:41.916772",
+    "summary": {
+      "total_dependencies": 8,
+      "vulnerable_packages": 8,
+      "total_vulnerabilities": 68,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 44,
+      "info": 0,
+      "scan_duration": "7.35s",
+      "scan_timestamp": "2025-11-25T13:55:41.916772"
+    },
+    "packages": [
+      {
+        "package": "lodash",
+        "version": "4.17.11",
+        "ecosystem": "npm",
+        "source_file": "D:\\project\\test_project\\package.json",
+        "vulnerability_count": 4,
+        "highest_severity": "LOW",
+        "vulnerabilities": [
+          {
+            "id": "GHSA-29mw-wpgm-hmr9",
+            "summary": "Regular Expression Denial of Service (ReDoS) in lodash",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.17.21",
+            "fixed_versions": [
+              "4.17.21"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-28500",
+              "https://github.com/github/advisory-database/pull/6139",
+              "https://github.com/lodash/lodash/pull/5065",
+              "https://github.com/lodash/lodash/pull/5065/commits/02906b8191d3c100c193fe6f7b27d1c40f200bb7",
+              "https://github.com/lodash/lodash/commit/c4847ebe7d14540bb28a8b932a9ce1b9ecbfee1a"
+            ],
+            "published_date": "2022-01-06T20:30:46Z",
+            "aliases": [
+              "CVE-2020-28500"
+            ],
+            "cve_ids": [
+              "CVE-2020-28500"
+            ]
+          },
+          {
+            "id": "GHSA-35jh-r3h4-6jhm",
+            "summary": "Command Injection in lodash",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.17.21",
+            "fixed_versions": [
+              "4.17.21"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2021-23337",
+              "https://github.com/lodash/lodash/commit/3469357cff396a26c363f8c1b5a91dde28ba4b1c",
+              "https://www.oracle.com/security-alerts/cpuoct2021.html",
+              "https://www.oracle.com/security-alerts/cpujul2022.html",
+              "https://www.oracle.com/security-alerts/cpujan2022.html"
+            ],
+            "published_date": "2021-05-06T16:05:51Z",
+            "aliases": [
+              "CVE-2021-23337"
+            ],
+            "cve_ids": [
+              "CVE-2021-23337"
+            ]
+          },
+          {
+            "id": "GHSA-jf85-cpcp-j695",
+            "summary": "Prototype Pollution in lodash",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.17.12",
+            "fixed_versions": [
+              "4.17.12"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-10744",
+              "https://github.com/lodash/lodash/pull/4336",
+              "https://access.redhat.com/errata/RHSA-2019:3024",
+              "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/lodash-rails/CVE-2019-10744.yml",
+              "https://security.netapp.com/advisory/ntap-20191004-0005"
+            ],
+            "published_date": "2019-07-10T19:45:23Z",
+            "aliases": [
+              "CVE-2019-10744"
+            ],
+            "cve_ids": [
+              "CVE-2019-10744"
+            ]
+          },
+          {
+            "id": "GHSA-p6mc-m468-83gw",
+            "summary": "Prototype Pollution in lodash",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.17.19",
+            "fixed_versions": [
+              "4.17.19"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-8203",
+              "https://github.com/lodash/lodash/issues/4744",
+              "https://github.com/lodash/lodash/issues/4874",
+              "https://github.com/github/advisory-database/pull/2884",
+              "https://github.com/lodash/lodash/commit/c84fe82760fb2d3e03a63379b297a1cc1a2fce12"
+            ],
+            "published_date": "2020-07-15T19:15:48Z",
+            "aliases": [
+              "CVE-2020-8203"
+            ],
+            "cve_ids": [
+              "CVE-2020-8203"
+            ]
+          }
+        ]
+      },
+      {
+        "package": "express",
+        "version": "4.16.0",
+        "ecosystem": "npm",
+        "source_file": "D:\\project\\test_project\\package.json",
+        "vulnerability_count": 2,
+        "highest_severity": "LOW",
+        "vulnerabilities": [
+          {
+            "id": "GHSA-qw6h-vgh9-j6wx",
+            "summary": "express vulnerable to XSS via response.redirect()",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "5.0.0",
+            "fixed_versions": [
+              "5.0.0"
+            ],
+            "references": [
+              "https://github.com/expressjs/express/security/advisories/GHSA-qw6h-vgh9-j6wx",
+              "https://nvd.nist.gov/vuln/detail/CVE-2024-43796",
+              "https://github.com/expressjs/express/commit/54271f69b511fea198471e6ff3400ab805d6b553",
+              "https://github.com/expressjs/express"
+            ],
+            "published_date": "2024-09-10T19:41:04Z",
+            "aliases": [
+              "CVE-2024-43796"
+            ],
+            "cve_ids": [
+              "CVE-2024-43796"
+            ]
+          },
+          {
+            "id": "GHSA-rv95-896h-c2vc",
+            "summary": "Express.js Open Redirect in malformed URLs",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "5.0.0-beta.3",
+            "fixed_versions": [
+              "5.0.0-beta.3"
+            ],
+            "references": [
+              "https://github.com/expressjs/express/security/advisories/GHSA-rv95-896h-c2vc",
+              "https://nvd.nist.gov/vuln/detail/CVE-2024-29041",
+              "https://github.com/koajs/koa/issues/1800",
+              "https://github.com/expressjs/express/pull/5539",
+              "https://github.com/expressjs/express/commit/0867302ddbde0e9463d0564fea5861feb708c2dd"
+            ],
+            "published_date": "2024-03-25T19:40:26Z",
+            "aliases": [
+              "CVE-2024-29041"
+            ],
+            "cve_ids": [
+              "CVE-2024-29041"
+            ]
+          }
+        ]
+      },
+      {
+        "package": "axios",
+        "version": "0.21.0",
+        "ecosystem": "npm",
+        "source_file": "D:\\project\\test_project\\package.json",
+        "vulnerability_count": 5,
+        "highest_severity": "LOW",
+        "vulnerabilities": [
+          {
+            "id": "GHSA-4hjh-wcwx-xvwj",
+            "summary": "Axios is vulnerable to DoS attack through lack of data size check",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "0.30.2",
+            "fixed_versions": [
+              "0.30.2"
+            ],
+            "references": [
+              "https://github.com/axios/axios/security/advisories/GHSA-4hjh-wcwx-xvwj",
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-58754",
+              "https://github.com/axios/axios/pull/7011",
+              "https://github.com/axios/axios/pull/7034",
+              "https://github.com/axios/axios/commit/945435fc51467303768202250debb8d4ae892593"
+            ],
+            "published_date": "2025-09-11T21:07:55Z",
+            "aliases": [
+              "CVE-2025-58754"
+            ],
+            "cve_ids": [
+              "CVE-2025-58754"
+            ]
+          },
+          {
+            "id": "GHSA-4w2v-q235-vp99",
+            "summary": "Axios vulnerable to Server-Side Request Forgery",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "0.21.1",
+            "fixed_versions": [
+              "0.21.1"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-28168",
+              "https://github.com/axios/axios/issues/3369",
+              "https://github.com/axios/axios/commit/c7329fefc890050edd51e40e469a154d0117fc55",
+              "https://cert-portal.siemens.com/productcert/pdf/ssa-637483.pdf",
+              "https://lists.apache.org/thread.html/r25d53acd06f29244b8a103781b0339c5e7efee9099a4d52f0c230e4a@%3Ccommits.druid.apache.org%3E"
+            ],
+            "published_date": "2021-01-04T20:59:40Z",
+            "aliases": [
+              "CVE-2020-28168"
+            ],
+            "cve_ids": [
+              "CVE-2020-28168"
+            ]
+          },
+          {
+            "id": "GHSA-cph5-m8f7-6c5x",
+            "summary": "axios Inefficient Regular Expression Complexity vulnerability",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "0.21.2",
+            "fixed_versions": [
+              "0.21.2"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2021-3749",
+              "https://github.com/axios/axios/commit/5b457116e31db0e88fede6c428e969e87f290929",
+              "https://www.oracle.com/security-alerts/cpujul2022.html",
+              "https://www.npmjs.com/package/axios",
+              "https://lists.apache.org/thread.html/rfc5c478053ff808671aef170f3d9fc9d05cc1fab8fb64431edc66103@%3Ccommits.druid.apache.org%3E"
+            ],
+            "published_date": "2021-09-01T18:23:02Z",
+            "aliases": [
+              "CVE-2021-3749"
+            ],
+            "cve_ids": [
+              "CVE-2021-3749"
+            ]
+          },
+          {
+            "id": "GHSA-jr5f-v2jv-69x6",
+            "summary": "axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "0.30.0",
+            "fixed_versions": [
+              "0.30.0"
+            ],
+            "references": [
+              "https://github.com/axios/axios/security/advisories/GHSA-jr5f-v2jv-69x6",
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-27152",
+              "https://github.com/axios/axios/issues/6463",
+              "https://github.com/axios/axios/pull/6829",
+              "https://github.com/axios/axios/commit/02c3c69ced0f8fd86407c23203835892313d7fde"
+            ],
+            "published_date": "2025-03-07T15:16:00Z",
+            "aliases": [
+              "CVE-2025-27152"
+            ],
+            "cve_ids": [
+              "CVE-2025-27152"
+            ]
+          },
+          {
+            "id": "GHSA-wf5p-g6vw-rhxx",
+            "summary": "Axios Cross-Site Request Forgery Vulnerability",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "0.28.0",
+            "fixed_versions": [
+              "0.28.0"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2023-45857",
+              "https://github.com/axios/axios/issues/6006",
+              "https://github.com/axios/axios/issues/6022",
+              "https://github.com/axios/axios/pull/6028",
+              "https://github.com/axios/axios/pull/6091"
+            ],
+            "published_date": "2023-11-08T21:30:37Z",
+            "aliases": [
+              "CVE-2023-45857"
+            ],
+            "cve_ids": [
+              "CVE-2023-45857"
+            ]
+          }
+        ]
+      },
+      {
+        "package": "jquery",
+        "version": "3.3.1",
+        "ecosystem": "npm",
+        "source_file": "D:\\project\\test_project\\package.json",
+        "vulnerability_count": 3,
+        "highest_severity": "LOW",
+        "vulnerabilities": [
+          {
+            "id": "GHSA-6c3j-c64m-qhgq",
+            "summary": "XSS in jQuery as used in Drupal, Backdrop CMS, and other products",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.19.0",
+            "fixed_versions": [
+              "1.19.0"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-11358",
+              "https://github.com/maximebf/php-debugbar/issues/447",
+              "https://github.com/jquery/jquery/pull/4333",
+              "https://github.com/maximebf/php-debugbar/commit/847216e60544258c881f2733d699bbcfeefac0fc",
+              "https://github.com/django/django/commit/34ec52269ade54af31a021b12969913129571a3f"
+            ],
+            "published_date": "2019-04-26T16:29:11Z",
+            "aliases": [
+              "CVE-2019-11358"
+            ],
+            "cve_ids": [
+              "CVE-2019-11358"
+            ]
+          },
+          {
+            "id": "GHSA-gxr4-xjj5-5px2",
+            "summary": "Potential XSS vulnerability in jQuery",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "3.5.0",
+            "fixed_versions": [
+              "3.5.0"
+            ],
+            "references": [
+              "https://github.com/jquery/jquery/security/advisories/GHSA-gxr4-xjj5-5px2",
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-11022",
+              "https://github.com/maximebf/php-debugbar/issues/447",
+              "https://github.com/jquery/jquery/commit/1d61fd9407e6fbe82fe55cb0b938307aa0791f77",
+              "https://github.com/maximebf/php-debugbar/commit/847216e60544258c881f2733d699bbcfeefac0fc"
+            ],
+            "published_date": "2020-04-29T22:18:55Z",
+            "aliases": [
+              "BIT-drupal-2020-11022",
+              "CVE-2020-11022"
+            ],
+            "cve_ids": [
+              "CVE-2020-11022"
+            ]
+          },
+          {
+            "id": "GHSA-jpcq-cgw6-v4j6",
+            "summary": "Potential XSS vulnerability in jQuery",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": true,
+            "fixed_version": "3.5.0",
+            "fixed_versions": [
+              "3.5.0"
+            ],
+            "references": [
+              "https://github.com/jquery/jquery/security/advisories/GHSA-jpcq-cgw6-v4j6",
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-11023",
+              "https://github.com/jquery/jquery/commit/1d61fd9407e6fbe82fe55cb0b938307aa0791f77",
+              "https://lists.apache.org/thread.html/rda99599896c3667f2cc9e9d34c7b6ef5d2bbed1f4801e1d75a2b0679@%3Ccommits.nifi.apache.org%3E",
+              "https://lists.apache.org/thread.html/re4ae96fa5c1a2fe71ccbb7b7ac1538bd0cb677be270a2bf6e2f8d108%40%3Cissues.flink.apache.org%3E"
+            ],
+            "published_date": "2020-04-29T22:19:14Z",
+            "aliases": [
+              "BIT-drupal-2020-11023",
+              "CVE-2020-11023"
+            ],
+            "cve_ids": [
+              "CVE-2020-11023"
+            ]
+          }
+        ]
+      },
+      {
+        "package": "requests",
+        "version": "2.6.0",
+        "ecosystem": "PyPI",
+        "source_file": "D:\\project\\test_project\\requirements.txt",
+        "vulnerability_count": 6,
+        "highest_severity": "LOW",
+        "vulnerabilities": [
+          {
+            "id": "GHSA-9hjg-9r4m-mvj7",
+            "summary": "Requests vulnerable to .netrc credentials leak via malicious URLs",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.32.4",
+            "fixed_versions": [
+              "2.32.4"
+            ],
+            "references": [
+              "https://github.com/psf/requests/security/advisories/GHSA-9hjg-9r4m-mvj7",
+              "https://nvd.nist.gov/vuln/detail/CVE-2024-47081",
+              "https://github.com/psf/requests/pull/6965",
+              "https://github.com/psf/requests/commit/96ba401c1296ab1dda74a2365ef36d88f7d144ef",
+              "https://github.com/psf/requests"
+            ],
+            "published_date": "2025-06-09T19:06:08Z",
+            "aliases": [
+              "CVE-2024-47081"
+            ],
+            "cve_ids": [
+              "CVE-2024-47081"
+            ]
+          },
+          {
+            "id": "GHSA-9wx4-h78v-vm56",
+            "summary": "Requests `Session` object does not verify requests after making first request with verify=False",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.32.0",
+            "fixed_versions": [
+              "2.32.0"
+            ],
+            "references": [
+              "https://github.com/psf/requests/security/advisories/GHSA-9wx4-h78v-vm56",
+              "https://nvd.nist.gov/vuln/detail/CVE-2024-35195",
+              "https://github.com/psf/requests/pull/6655",
+              "https://github.com/psf/requests/commit/a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac",
+              "https://github.com/psf/requests"
+            ],
+            "published_date": "2024-05-20T20:15:00Z",
+            "aliases": [
+              "CVE-2024-35195"
+            ],
+            "cve_ids": [
+              "CVE-2024-35195"
+            ]
+          },
+          {
+            "id": "GHSA-j8r2-6x86-q33q",
+            "summary": "Unintended leak of Proxy-Authorization header in requests",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.31.0",
+            "fixed_versions": [
+              "2.31.0"
+            ],
+            "references": [
+              "https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q",
+              "https://nvd.nist.gov/vuln/detail/CVE-2023-32681",
+              "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+              "https://github.com/psf/requests",
+              "https://github.com/psf/requests/releases/tag/v2.31.0"
+            ],
+            "published_date": "2023-05-22T20:36:32Z",
+            "aliases": [
+              "CVE-2023-32681",
+              "PYSEC-2023-74"
+            ],
+            "cve_ids": [
+              "CVE-2023-32681"
+            ]
+          },
+          {
+            "id": "GHSA-x84v-xcm2-53pg",
+            "summary": "Insufficiently Protected Credentials in Requests",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.20.0",
+            "fixed_versions": [
+              "2.20.0"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2018-18074",
+              "https://github.com/requests/requests/issues/4716",
+              "https://github.com/requests/requests/pull/4718",
+              "https://github.com/requests/requests/commit/c45d7c49ea75133e52ab22a8e9e13173938e36ff",
+              "https://access.redhat.com/errata/RHSA-2019:2035"
+            ],
+            "published_date": "2018-10-29T19:06:46Z",
+            "aliases": [
+              "CVE-2018-18074",
+              "PYSEC-2018-28"
+            ],
+            "cve_ids": [
+              "CVE-2018-18074"
+            ]
+          },
+          {
+            "id": "PYSEC-2018-28",
+            "summary": "The Requests package before 2.20.0 for Python sends an HTTP Authorization header to an http URI upon receiving a same-hostname https-to-http redirect, which makes it easier for remote attackers to dis",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.20.0",
+            "fixed_versions": [
+              "2.20.0"
+            ],
+            "references": [
+              "https://github.com/requests/requests/pull/4718",
+              "https://github.com/requests/requests/issues/4716",
+              "https://github.com/requests/requests/commit/c45d7c49ea75133e52ab22a8e9e13173938e36ff",
+              "https://bugs.debian.org/910766",
+              "https://usn.ubuntu.com/3790-1/"
+            ],
+            "published_date": "2018-10-09T17:29:00Z",
+            "aliases": [
+              "CVE-2018-18074",
+              "GHSA-x84v-xcm2-53pg"
+            ],
+            "cve_ids": [
+              "CVE-2018-18074"
+            ]
+          },
+          {
+            "id": "PYSEC-2023-74",
+            "summary": "Requests is a HTTP library. Since Requests 2.3.0, Requests has been leaking Proxy-Authorization headers to destination servers when redirected to an HTTPS endpoint. This is a product of how we use `re",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.31.0",
+            "fixed_versions": [
+              "2.31.0"
+            ],
+            "references": [
+              "https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q",
+              "https://github.com/psf/requests/releases/tag/v2.31.0",
+              "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+              "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/AW7HNFGYP44RT3DUDQXG2QT3OEV2PJ7Y/"
+            ],
+            "published_date": "2023-05-26T18:15:00Z",
+            "aliases": [
+              "CVE-2023-32681",
+              "GHSA-j8r2-6x86-q33q"
+            ],
+            "cve_ids": [
+              "CVE-2023-32681"
+            ]
+          }
+        ]
+      },
+      {
+        "package": "flask",
+        "version": "0.12.0",
+        "ecosystem": "PyPI",
+        "source_file": "D:\\project\\test_project\\requirements.txt",
+        "vulnerability_count": 6,
+        "highest_severity": "LOW",
+        "vulnerabilities": [
+          {
+            "id": "GHSA-562c-5r94-xh97",
+            "summary": "Flask is vulnerable to Denial of Service via incorrect encoding of JSON data",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "0.12.3",
+            "fixed_versions": [
+              "0.12.3"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2018-1000656",
+              "https://github.com/pallets/flask/pull/2691",
+              "https://github.com/pallets/flask/commit/b178e89e4456e777b1a7ac6d7199052d0dfdbbbe",
+              "https://github.com/advisories/GHSA-562c-5r94-xh97",
+              "https://github.com/pallets/flask"
+            ],
+            "published_date": "2018-08-23T19:10:40Z",
+            "aliases": [
+              "CVE-2018-1000656",
+              "PYSEC-2018-66"
+            ],
+            "cve_ids": [
+              "CVE-2018-1000656"
+            ]
+          },
+          {
+            "id": "GHSA-5wv5-4vpf-pj6m",
+            "summary": "Pallets Project Flask is vulnerable to Denial of Service via Unexpected memory usage",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.0",
+            "fixed_versions": [
+              "1.0"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-1010083",
+              "https://github.com/advisories/GHSA-5wv5-4vpf-pj6m",
+              "https://github.com/pallets/flask",
+              "https://github.com/pypa/advisory-database/tree/main/vulns/flask/PYSEC-2019-179.yaml",
+              "https://www.palletsprojects.com/blog/flask-1-0-released"
+            ],
+            "published_date": "2019-07-19T16:12:46Z",
+            "aliases": [
+              "CVE-2019-1010083",
+              "PYSEC-2019-179"
+            ],
+            "cve_ids": [
+              "CVE-2019-1010083"
+            ]
+          },
+          {
+            "id": "GHSA-m2qf-hxjv-5gpq",
+            "summary": "Flask vulnerable to possible disclosure of permanent session cookie due to missing Vary: Cookie header",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.5",
+            "fixed_versions": [
+              "2.2.5"
+            ],
+            "references": [
+              "https://github.com/pallets/flask/security/advisories/GHSA-m2qf-hxjv-5gpq",
+              "https://nvd.nist.gov/vuln/detail/CVE-2023-30861",
+              "https://github.com/pallets/flask/commit/70f906c51ce49c485f1d355703e9cc3386b1cc2b",
+              "https://github.com/pallets/flask/commit/afd63b16170b7c047f5758eb910c416511e9c965",
+              "https://github.com/pallets/flask"
+            ],
+            "published_date": "2023-05-01T19:22:20Z",
+            "aliases": [
+              "CVE-2023-30861",
+              "PYSEC-2023-62"
+            ],
+            "cve_ids": [
+              "CVE-2023-30861"
+            ]
+          },
+          {
+            "id": "PYSEC-2018-66",
+            "summary": "The Pallets Project flask version Before 0.12.3 contains a CWE-20: Improper Input Validation vulnerability in flask that can result in Large amount of memory usage possibly leading to denial of servic",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "0.12.3",
+            "fixed_versions": [
+              "0.12.3"
+            ],
+            "references": [
+              "https://github.com/pallets/flask/releases/tag/0.12.3",
+              "https://github.com/pallets/flask/pull/2691",
+              "https://security.netapp.com/advisory/ntap-20190221-0001/",
+              "https://lists.debian.org/debian-lts-announce/2019/08/msg00025.html",
+              "https://usn.ubuntu.com/4378-1/"
+            ],
+            "published_date": "2018-08-20T19:31:00Z",
+            "aliases": [
+              "CVE-2018-1000656",
+              "GHSA-562c-5r94-xh97"
+            ],
+            "cve_ids": [
+              "CVE-2018-1000656"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-179",
+            "summary": "The Pallets Project Flask before 1.0 is affected by: unexpected memory usage. The impact is: denial of service. The attack vector is: crafted encoded JSON data. The fixed version is: 1. NOTE: this may",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.0",
+            "fixed_versions": [
+              "1.0"
+            ],
+            "references": [
+              "https://www.palletsprojects.com/blog/flask-1-0-released/",
+              "https://github.com/advisories/GHSA-5wv5-4vpf-pj6m"
+            ],
+            "published_date": "2019-07-17T14:15:00Z",
+            "aliases": [
+              "CVE-2019-1010083",
+              "GHSA-5wv5-4vpf-pj6m"
+            ],
+            "cve_ids": [
+              "CVE-2019-1010083"
+            ]
+          },
+          {
+            "id": "PYSEC-2023-62",
+            "summary": "Flask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one client may be cached and subsequently sent by the proxy",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.5",
+            "fixed_versions": [
+              "2.2.5"
+            ],
+            "references": [
+              "https://github.com/pallets/flask/commit/70f906c51ce49c485f1d355703e9cc3386b1cc2b",
+              "https://github.com/pallets/flask/releases/tag/2.3.2",
+              "https://github.com/pallets/flask/releases/tag/2.2.5",
+              "https://github.com/pallets/flask/security/advisories/GHSA-m2qf-hxjv-5gpq",
+              "https://github.com/pallets/flask/commit/afd63b16170b7c047f5758eb910c416511e9c965"
+            ],
+            "published_date": "2023-05-02T18:15:00Z",
+            "aliases": [
+              "CVE-2023-30861",
+              "GHSA-m2qf-hxjv-5gpq"
+            ],
+            "cve_ids": [
+              "CVE-2023-30861"
+            ]
+          }
+        ]
+      },
+      {
+        "package": "django",
+        "version": "1.11.0",
+        "ecosystem": "PyPI",
+        "source_file": "D:\\project\\test_project\\requirements.txt",
+        "vulnerability_count": 38,
+        "highest_severity": "LOW",
+        "vulnerabilities": [
+          {
+            "id": "GHSA-2f9x-5v75-3qv4",
+            "summary": "Django Denial-of-service possibility in truncatechars_html and truncatewords_html template filters",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.8.19",
+            "fixed_versions": [
+              "1.8.19"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2018-7537",
+              "https://github.com/django/django/commit/94c5da1d17a6b0d378866c66b605102c19f7988c",
+              "https://github.com/django/django/commit/a91436360b79a6ff995c3e5018bcc666dfaf1539",
+              "https://github.com/django/django/commit/d17974a287a6ea2e361daff88fcc004cbd6835fa",
+              "https://access.redhat.com/errata/RHSA-2018:2927"
+            ],
+            "published_date": "2019-01-04T17:50:00Z",
+            "aliases": [
+              "CVE-2018-7537",
+              "PYSEC-2018-6"
+            ],
+            "cve_ids": [
+              "CVE-2018-7537"
+            ]
+          },
+          {
+            "id": "GHSA-337x-4q8g-prc5",
+            "summary": "Improper Input Validation in Django",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.1.5",
+            "fixed_versions": [
+              "2.1.5"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-3498",
+              "https://docs.djangoproject.com/en/dev/releases/security",
+              "https://github.com/advisories/GHSA-337x-4q8g-prc5",
+              "https://github.com/django/django",
+              "https://github.com/pypa/advisory-database/tree/main/vulns/django/PYSEC-2019-17.yaml"
+            ],
+            "published_date": "2019-01-14T16:20:05Z",
+            "aliases": [
+              "CVE-2019-3498",
+              "PYSEC-2019-17"
+            ],
+            "cve_ids": [
+              "CVE-2019-3498"
+            ]
+          },
+          {
+            "id": "GHSA-3gh2-xw74-jmcw",
+            "summary": "SQL injection in Django",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "3.0.4",
+            "fixed_versions": [
+              "3.0.4"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-9402",
+              "https://github.com/django/django/commit/6695d29b1c1ce979725816295a26ecc64ae0e927",
+              "https://docs.djangoproject.com/en/3.0/releases/security",
+              "https://github.com/advisories/GHSA-3gh2-xw74-jmcw",
+              "https://github.com/django/django"
+            ],
+            "published_date": "2020-06-05T14:52:07Z",
+            "aliases": [
+              "BIT-django-2020-9402",
+              "CVE-2020-9402",
+              "PYSEC-2020-36"
+            ],
+            "cve_ids": [
+              "CVE-2020-9402"
+            ]
+          },
+          {
+            "id": "GHSA-5hg3-6c2f-f3wr",
+            "summary": "Django open redirect",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.15",
+            "fixed_versions": [
+              "1.11.15"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2018-14574",
+              "https://github.com/django/django/commit/6fffc3c6d420e44f4029d5643f38d00a39b08525",
+              "https://github.com/django/django/commit/c4e5ff7fdb5fce447675e90291fd33fddd052b3c",
+              "https://github.com/django/django/commit/d6eaee092709aad477a9894598496c6deec532ff",
+              "https://access.redhat.com/errata/RHSA-2019:0265"
+            ],
+            "published_date": "2018-10-04T21:58:46Z",
+            "aliases": [
+              "CVE-2018-14574",
+              "PYSEC-2018-2"
+            ],
+            "cve_ids": [
+              "CVE-2018-14574"
+            ]
+          },
+          {
+            "id": "GHSA-68w8-qjq3-2gfm",
+            "summary": "Path Traversal in Django",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "3.2.4",
+            "fixed_versions": [
+              "3.2.4"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2021-33203",
+              "https://github.com/django/django/commit/053cc9534d174dc89daba36724ed2dcb36755b90",
+              "https://github.com/django/django/commit/20c67a0693c4ede2b09af02574823485e82e4c8f",
+              "https://github.com/django/django/commit/dfaba12cda060b8b292ae1d271b44bf810b1c5b9",
+              "https://docs.djangoproject.com/en/3.2/releases/security"
+            ],
+            "published_date": "2021-06-10T17:21:00Z",
+            "aliases": [
+              "BIT-django-2021-33203",
+              "CVE-2021-33203",
+              "PYSEC-2021-98"
+            ],
+            "cve_ids": [
+              "CVE-2021-33203"
+            ]
+          },
+          {
+            "id": "GHSA-6c7v-2f49-8h26",
+            "summary": "Django Incorrect HTTP detection with reverse-proxy connecting via HTTPS",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.22",
+            "fixed_versions": [
+              "1.11.22"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-12781",
+              "https://docs.djangoproject.com/en/dev/releases/security",
+              "https://github.com/advisories/GHSA-6c7v-2f49-8h26",
+              "https://github.com/django/django",
+              "https://github.com/pypa/advisory-database/tree/main/vulns/django/PYSEC-2019-10.yaml"
+            ],
+            "published_date": "2019-07-03T20:37:25Z",
+            "aliases": [
+              "CVE-2019-12781",
+              "PYSEC-2019-10"
+            ],
+            "cve_ids": [
+              "CVE-2019-12781"
+            ]
+          },
+          {
+            "id": "GHSA-6r97-cj55-9hrq",
+            "summary": "SQL Injection in Django",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.4",
+            "fixed_versions": [
+              "2.2.4"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-14234",
+              "https://github.com/django/django/commit/4f5b58f5cd3c57fee9972ab074f8dc6895d8f387",
+              "https://github.com/django/django/commit/ed682a24fca774818542757651bfba576c3fc3ef",
+              "https://github.com/django/django/commit/f74b3ae3628c26e1b4f8db3d13a91d52a833a975",
+              "https://docs.djangoproject.com/en/dev/releases/security"
+            ],
+            "published_date": "2019-08-16T14:00:34Z",
+            "aliases": [
+              "CVE-2019-14234",
+              "PYSEC-2019-13"
+            ],
+            "cve_ids": [
+              "CVE-2019-14234"
+            ]
+          },
+          {
+            "id": "GHSA-6w2r-r2m5-xq5w",
+            "summary": "Django is subject to SQL injection through its column aliases",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "5.2.6",
+            "fixed_versions": [
+              "5.2.6"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-57833",
+              "https://github.com/django/django/commit/102965ea93072fe3c39a30be437c683ec1106ef5",
+              "https://github.com/django/django/commit/31334e6965ad136a5e369993b01721499c5d1a92",
+              "https://github.com/django/django/commit/4c044fcc866ec226f612c475950b690b0139d243",
+              "https://docs.djangoproject.com/en/dev/releases/security"
+            ],
+            "published_date": "2025-09-08T18:31:31Z",
+            "aliases": [
+              "BIT-django-2025-57833",
+              "CVE-2025-57833"
+            ],
+            "cve_ids": [
+              "CVE-2025-57833"
+            ]
+          },
+          {
+            "id": "GHSA-7rp2-fm2h-wchj",
+            "summary": "Django Cross-site Scripting in AdminURLFieldWidget",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.2",
+            "fixed_versions": [
+              "2.2.2"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-12308",
+              "https://github.com/django/django/commit/09186a13d975de6d049f8b3e05484f66b01ece62",
+              "https://github.com/django/django/commit/afddabf8428ddc89a332f7a78d0d21eaf2b5a673",
+              "https://github.com/django/django/commit/c238701859a52d584f349cce15d56c8e8137c52b",
+              "https://www.djangoproject.com/weblog/2019/jun/03/security-releases"
+            ],
+            "published_date": "2019-06-10T18:43:25Z",
+            "aliases": [
+              "CVE-2019-12308",
+              "PYSEC-2019-79"
+            ],
+            "cve_ids": [
+              "CVE-2019-12308"
+            ]
+          },
+          {
+            "id": "GHSA-7xr5-9hcq-chf9",
+            "summary": "Django Improper Output Neutralization for Logs vulnerability",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.2.22",
+            "fixed_versions": [
+              "4.2.22"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-48432",
+              "https://docs.djangoproject.com/en/dev/releases/security",
+              "https://github.com/django/django",
+              "https://github.com/pypa/advisory-database/tree/main/vulns/django/PYSEC-2025-47.yaml",
+              "https://groups.google.com/g/django-announce"
+            ],
+            "published_date": "2025-06-05T03:30:58Z",
+            "aliases": [
+              "BIT-django-2025-48432",
+              "CVE-2025-48432",
+              "PYSEC-2025-47"
+            ],
+            "cve_ids": [
+              "CVE-2025-48432"
+            ]
+          },
+          {
+            "id": "GHSA-8x94-hmjh-97hq",
+            "summary": "Django vulnerable to Reflected File Download attack",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.0.7",
+            "fixed_versions": [
+              "4.0.7"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2022-36359",
+              "https://github.com/django/django/commit/b3e4494d759202a3b6bf247fd34455bf13be5b80",
+              "https://github.com/django/django/commit/b7d9529cbe0af4adabb6ea5d01ed8dcce3668fb3",
+              "https://github.com/django/django/commit/bd062445cffd3f6cc6dcd20d13e2abed818fa173",
+              "https://docs.djangoproject.com/en/4.0/releases/security"
+            ],
+            "published_date": "2022-08-11T14:49:12Z",
+            "aliases": [
+              "BIT-django-2022-36359",
+              "CVE-2022-36359",
+              "PYSEC-2022-245"
+            ],
+            "cve_ids": [
+              "CVE-2022-36359"
+            ]
+          },
+          {
+            "id": "GHSA-9r8w-6x8c-6jr9",
+            "summary": "Django vulnerable to XSS on 500 pages",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.5",
+            "fixed_versions": [
+              "1.11.5"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2017-12794",
+              "https://github.com/django/django/commit/58e08e80e362db79eb0fd775dc81faad90dca47a",
+              "https://github.com/django/django/commit/e35a0c56086924f331e9422daa266e907a4784cc",
+              "https://github.com/advisories/GHSA-9r8w-6x8c-6jr9",
+              "https://github.com/django/django"
+            ],
+            "published_date": "2019-01-04T17:50:34Z",
+            "aliases": [
+              "CVE-2017-12794",
+              "PYSEC-2017-44"
+            ],
+            "cve_ids": [
+              "CVE-2017-12794"
+            ]
+          },
+          {
+            "id": "GHSA-c4qh-4vgv-qc6g",
+            "summary": "Django Denial-of-service in django.utils.text.Truncator",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.4",
+            "fixed_versions": [
+              "2.2.4"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-14232",
+              "https://www.openwall.com/lists/oss-security/2023/10/04/6",
+              "https://www.djangoproject.com/weblog/2019/aug/01/security-releases",
+              "https://www.debian.org/security/2019/dsa-4498",
+              "https://security.netapp.com/advisory/ntap-20190828-0002"
+            ],
+            "published_date": "2019-08-06T01:43:29Z",
+            "aliases": [
+              "CVE-2019-14232",
+              "PYSEC-2019-11"
+            ],
+            "cve_ids": [
+              "CVE-2019-14232"
+            ]
+          },
+          {
+            "id": "GHSA-frmv-pr5f-9mcr",
+            "summary": "Django vulnerable to SQL injection via _connector keyword argument in QuerySet and Q objects.",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.2.26",
+            "fixed_versions": [
+              "4.2.26"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-64459",
+              "https://github.com/django/django/commit/06dd38324ac3d60d83d9f3adabf0dcdf423d2a85",
+              "https://github.com/django/django/commit/59ae82e67053d281ff4562a24bbba21299f0a7d4",
+              "https://github.com/django/django/commit/6703f364d767e949c5b0e4016433ef75063b4f9b",
+              "https://github.com/django/django/commit/72d2c87431f2ae0431d65d0ec792047f078c8241"
+            ],
+            "published_date": "2025-11-05T15:31:07Z",
+            "aliases": [
+              "BIT-django-2025-64459",
+              "CVE-2025-64459"
+            ],
+            "cve_ids": [
+              "CVE-2025-64459"
+            ]
+          },
+          {
+            "id": "GHSA-h5jv-4p7w-64jg",
+            "summary": "Django Denial-of-service in strip_tags()",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.4",
+            "fixed_versions": [
+              "2.2.4"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-14233",
+              "https://docs.djangoproject.com/en/dev/releases/security",
+              "https://github.com/advisories/GHSA-h5jv-4p7w-64jg",
+              "https://github.com/django/django",
+              "https://github.com/pypa/advisory-database/tree/main/vulns/django/PYSEC-2019-12.yaml"
+            ],
+            "published_date": "2019-08-06T01:43:33Z",
+            "aliases": [
+              "CVE-2019-14233",
+              "PYSEC-2019-12"
+            ],
+            "cve_ids": [
+              "CVE-2019-14233"
+            ]
+          },
+          {
+            "id": "GHSA-hmr4-m2h5-33qx",
+            "summary": "SQL injection in Django",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "3.0.3",
+            "fixed_versions": [
+              "3.0.3"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-7471",
+              "https://github.com/django/django/commit/001b0634cd309e372edb6d7d95d083d02b8e37bd",
+              "https://github.com/django/django/commit/505826b469b16ab36693360da9e11fd13213421b",
+              "https://github.com/django/django/commit/c67a368c16e4680b324b4f385398d638db4d8147",
+              "https://github.com/django/django/commit/eb31d845323618d688ad429479c6dda973056136"
+            ],
+            "published_date": "2020-02-11T21:03:20Z",
+            "aliases": [
+              "BIT-django-2020-7471",
+              "CVE-2020-7471",
+              "PYSEC-2020-35"
+            ],
+            "cve_ids": [
+              "CVE-2020-7471"
+            ]
+          },
+          {
+            "id": "GHSA-qw25-v68c-qjf3",
+            "summary": "Django has a denial-of-service vulnerability in HttpResponseRedirect and HttpResponsePermanentRedirect on Windows",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.2.26",
+            "fixed_versions": [
+              "4.2.26"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-64458",
+              "https://github.com/django/django/commit/3790593781d26168e7306b5b2f8ea0309de16242",
+              "https://github.com/django/django/commit/4f5d904b63751dea9ffc3b0e046404a7fa5881ac",
+              "https://github.com/django/django/commit/6e13348436fccf8f22982921d6a3a3e65c956a9f",
+              "https://github.com/django/django/commit/770eea38d7a0e9ba9455140b5a9a9e33618226a7"
+            ],
+            "published_date": "2025-11-05T15:31:07Z",
+            "aliases": [
+              "BIT-django-2025-64458",
+              "CVE-2025-64458"
+            ],
+            "cve_ids": [
+              "CVE-2025-64458"
+            ]
+          },
+          {
+            "id": "GHSA-r28v-mw67-m5p9",
+            "summary": "Django denial-of-service possibility in urlize and urlizetrunc template filters",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.8.19",
+            "fixed_versions": [
+              "1.8.19"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2018-7536",
+              "https://github.com/django/django/commit/1ca63a66ef3163149ad822701273e8a1844192c2",
+              "https://github.com/django/django/commit/abf89d729f210c692a50e0ad3f75fb6bec6fae16",
+              "https://github.com/django/django/commit/e157315da3ae7005fa0683ffc9751dbeca7306c8",
+              "https://access.redhat.com/errata/RHSA-2018:2927"
+            ],
+            "published_date": "2019-01-04T17:50:07Z",
+            "aliases": [
+              "CVE-2018-7536",
+              "PYSEC-2018-5"
+            ],
+            "cve_ids": [
+              "CVE-2018-7536"
+            ]
+          },
+          {
+            "id": "GHSA-rrqc-c2jx-6jgv",
+            "summary": "Django allows enumeration of user e-mail addresses",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.2.16",
+            "fixed_versions": [
+              "4.2.16"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2024-45231",
+              "https://github.com/django/django/commit/3c733c78d6f8e50296d6e248968b6516c92a53ca",
+              "https://github.com/django/django/commit/96d84047715ea1715b4bd1594e46122b8a77b9e2",
+              "https://github.com/django/django/commit/bf4888d317ba4506d091eeac6e8b4f1fcc731199",
+              "https://docs.djangoproject.com/en/dev/releases/security"
+            ],
+            "published_date": "2024-10-08T18:33:13Z",
+            "aliases": [
+              "BIT-django-2024-45231",
+              "CVE-2024-45231"
+            ],
+            "cve_ids": [
+              "CVE-2024-45231"
+            ]
+          },
+          {
+            "id": "GHSA-v9qg-3j8p-r63v",
+            "summary": "Uncontrolled Recursion in Django",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.4",
+            "fixed_versions": [
+              "2.2.4"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-14235",
+              "https://docs.djangoproject.com/en/dev/releases/security",
+              "https://github.com/advisories/GHSA-v9qg-3j8p-r63v",
+              "https://github.com/django/django",
+              "https://github.com/pypa/advisory-database/tree/main/vulns/django/PYSEC-2019-14.yaml"
+            ],
+            "published_date": "2019-08-06T01:43:31Z",
+            "aliases": [
+              "CVE-2019-14235",
+              "PYSEC-2019-14"
+            ],
+            "cve_ids": [
+              "CVE-2019-14235"
+            ]
+          },
+          {
+            "id": "GHSA-vfq6-hq5r-27r6",
+            "summary": "Django Potential account hijack via password reset form",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "3.0.1",
+            "fixed_versions": [
+              "3.0.1"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-19844",
+              "https://github.com/django/django/commit/302a4ff1e8b1c798aab97673909c7a3dfda42c26",
+              "https://github.com/django/django/commit/4d334bea06cac63dc1272abcec545b85136cca0e",
+              "https://github.com/django/django/commit/5b1fbcef7a8bec991ebe7b2a18b5d5a95d72cb70",
+              "https://github.com/django/django/commit/f4cff43bf921fcea6a29b726eb66767f67753fa2"
+            ],
+            "published_date": "2020-01-16T22:35:12Z",
+            "aliases": [
+              "CVE-2019-19844",
+              "PYSEC-2019-16"
+            ],
+            "cve_ids": [
+              "CVE-2019-19844"
+            ]
+          },
+          {
+            "id": "GHSA-wh4h-v3f2-r2pp",
+            "summary": "Uncontrolled Memory Consumption in Django",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.1.6",
+            "fixed_versions": [
+              "2.1.6"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-6975",
+              "https://github.com/django/django/commit/0bbb560183fabf0533289700845dafa94951f227",
+              "https://github.com/django/django/commit/1f42f82566c9d2d73aff1c42790d6b1b243f7676",
+              "https://github.com/django/django/commit/40cd19055773705301c3428ed5e08a036d2091f3",
+              "https://www.openwall.com/lists/oss-security/2019/02/11/1"
+            ],
+            "published_date": "2019-02-12T15:36:37Z",
+            "aliases": [
+              "CVE-2019-6975",
+              "PYSEC-2019-18"
+            ],
+            "cve_ids": [
+              "CVE-2019-6975"
+            ]
+          },
+          {
+            "id": "PYSEC-2017-44",
+            "summary": "In Django 1.10.x before 1.10.8 and 1.11.x before 1.11.5, HTML autoescaping was disabled in a portion of the template for the technical 500 debug page. Given the right circumstances, this allowed a cro",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.10.8",
+            "fixed_versions": [
+              "1.10.8"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2017/sep/05/security-releases/",
+              "http://www.securitytracker.com/id/1039264",
+              "http://www.securityfocus.com/bid/100643",
+              "https://usn.ubuntu.com/3559-1/",
+              "https://github.com/advisories/GHSA-9r8w-6x8c-6jr9"
+            ],
+            "published_date": "2017-09-07T13:29:00Z",
+            "aliases": [
+              "CVE-2017-12794",
+              "GHSA-9r8w-6x8c-6jr9"
+            ],
+            "cve_ids": [
+              "CVE-2017-12794"
+            ]
+          },
+          {
+            "id": "PYSEC-2018-2",
+            "summary": "django.middleware.common.CommonMiddleware in Django 1.11.x before 1.11.15 and 2.0.x before 2.0.8 has an Open Redirect.",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.0.8",
+            "fixed_versions": [
+              "2.0.8"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2018/aug/01/security-releases/",
+              "https://usn.ubuntu.com/3726-1/",
+              "http://www.securitytracker.com/id/1041403",
+              "https://www.debian.org/security/2018/dsa-4264",
+              "http://www.securityfocus.com/bid/104970"
+            ],
+            "published_date": "2018-08-03T17:29:00Z",
+            "aliases": [
+              "CVE-2018-14574",
+              "GHSA-5hg3-6c2f-f3wr"
+            ],
+            "cve_ids": [
+              "CVE-2018-14574"
+            ]
+          },
+          {
+            "id": "PYSEC-2018-5",
+            "summary": "An issue was discovered in Django 2.0 before 2.0.3, 1.11 before 1.11.11, and 1.8 before 1.8.19. The django.utils.html.urlize() function was extremely slow to evaluate certain inputs due to catastrophi",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.8.19",
+            "fixed_versions": [
+              "1.8.19"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2018/mar/06/security-releases/",
+              "https://lists.debian.org/debian-lts-announce/2018/03/msg00006.html",
+              "http://www.securityfocus.com/bid/103361",
+              "https://usn.ubuntu.com/3591-1/",
+              "https://www.debian.org/security/2018/dsa-4161"
+            ],
+            "published_date": "2018-03-09T20:29:00Z",
+            "aliases": [
+              "CVE-2018-7536",
+              "GHSA-r28v-mw67-m5p9"
+            ],
+            "cve_ids": [
+              "CVE-2018-7536"
+            ]
+          },
+          {
+            "id": "PYSEC-2018-6",
+            "summary": "An issue was discovered in Django 2.0 before 2.0.3, 1.11 before 1.11.11, and 1.8 before 1.8.19. If django.utils.text.Truncator's chars() and words() methods were passed the html=True argument, they we",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.8.19",
+            "fixed_versions": [
+              "1.8.19"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2018/mar/06/security-releases/",
+              "https://lists.debian.org/debian-lts-announce/2018/03/msg00006.html",
+              "http://www.securityfocus.com/bid/103357",
+              "https://usn.ubuntu.com/3591-1/",
+              "https://www.debian.org/security/2018/dsa-4161"
+            ],
+            "published_date": "2018-03-09T20:29:00Z",
+            "aliases": [
+              "CVE-2018-7537",
+              "GHSA-2f9x-5v75-3qv4"
+            ],
+            "cve_ids": [
+              "CVE-2018-7537"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-10",
+            "summary": "An issue was discovered in Django 1.11 before 1.11.22, 2.1 before 2.1.10, and 2.2 before 2.2.3. An HTTP request is not redirected to HTTPS when the SECURE_PROXY_SSL_HEADER and SECURE_SSL_REDIRECT sett",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.1.10",
+            "fixed_versions": [
+              "2.1.10"
+            ],
+            "references": [
+              "https://groups.google.com/forum/#!topic/django-announce/Is4kLY9ZcZQ",
+              "https://www.djangoproject.com/weblog/2019/jul/01/security-releases/",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "http://www.openwall.com/lists/oss-security/2019/07/01/3",
+              "https://usn.ubuntu.com/4043-1/"
+            ],
+            "published_date": "2019-07-01T14:15:00Z",
+            "aliases": [
+              "CVE-2019-12781",
+              "GHSA-6c7v-2f49-8h26"
+            ],
+            "cve_ids": [
+              "CVE-2019-12781"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-11",
+            "summary": "An issue was discovered in Django 1.11.x before 1.11.23, 2.1.x before 2.1.11, and 2.2.x before 2.2.4. If django.utils.text.Truncator's chars() and words() methods were passed the html=True argument, t",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.23",
+            "fixed_versions": [
+              "1.11.23"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2019/aug/01/security-releases/",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "https://groups.google.com/forum/#!topic/django-announce/jIoju2-KLDs",
+              "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00006.html",
+              "https://seclists.org/bugtraq/2019/Aug/15"
+            ],
+            "published_date": "2019-08-02T15:15:00Z",
+            "aliases": [
+              "CVE-2019-14232",
+              "GHSA-c4qh-4vgv-qc6g"
+            ],
+            "cve_ids": [
+              "CVE-2019-14232"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-12",
+            "summary": "An issue was discovered in Django 1.11.x before 1.11.23, 2.1.x before 2.1.11, and 2.2.x before 2.2.4. Due to the behaviour of the underlying HTMLParser, django.utils.html.strip_tags would be extremely",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.1.11",
+            "fixed_versions": [
+              "2.1.11"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2019/aug/01/security-releases/",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "https://groups.google.com/forum/#!topic/django-announce/jIoju2-KLDs",
+              "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00006.html",
+              "https://seclists.org/bugtraq/2019/Aug/15"
+            ],
+            "published_date": "2019-08-02T15:15:00Z",
+            "aliases": [
+              "CVE-2019-14233",
+              "GHSA-h5jv-4p7w-64jg"
+            ],
+            "cve_ids": [
+              "CVE-2019-14233"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-13",
+            "summary": "An issue was discovered in Django 1.11.x before 1.11.23, 2.1.x before 2.1.11, and 2.2.x before 2.2.4. Due to an error in shallow key transformation, key and index lookups for django.contrib.postgres.f",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.1.11",
+            "fixed_versions": [
+              "2.1.11"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2019/aug/01/security-releases/",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "https://groups.google.com/forum/#!topic/django-announce/jIoju2-KLDs",
+              "https://seclists.org/bugtraq/2019/Aug/15",
+              "https://www.debian.org/security/2019/dsa-4498"
+            ],
+            "published_date": "2019-08-09T13:15:00Z",
+            "aliases": [
+              "CVE-2019-14234",
+              "GHSA-6r97-cj55-9hrq"
+            ],
+            "cve_ids": [
+              "CVE-2019-14234"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-14",
+            "summary": "An issue was discovered in Django 1.11.x before 1.11.23, 2.1.x before 2.1.11, and 2.2.x before 2.2.4. If passed certain inputs, django.utils.encoding.uri_to_iri could lead to significant memory usage ",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.4",
+            "fixed_versions": [
+              "2.2.4"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2019/aug/01/security-releases/",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "https://groups.google.com/forum/#!topic/django-announce/jIoju2-KLDs",
+              "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00006.html",
+              "https://seclists.org/bugtraq/2019/Aug/15"
+            ],
+            "published_date": "2019-08-02T15:15:00Z",
+            "aliases": [
+              "CVE-2019-14235",
+              "GHSA-v9qg-3j8p-r63v"
+            ],
+            "cve_ids": [
+              "CVE-2019-14235"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-16",
+            "summary": "Django before 1.11.27, 2.x before 2.2.9, and 3.x before 3.0.1 allows account takeover. A suitably crafted email address (that is equal to an existing user's email address after case transformation of ",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.27",
+            "fixed_versions": [
+              "1.11.27"
+            ],
+            "references": [
+              "https://groups.google.com/forum/#!topic/django-announce/3oaB2rVH3a0",
+              "https://www.djangoproject.com/weblog/2019/dec/18/security-releases/",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "https://usn.ubuntu.com/4224-1/",
+              "https://www.debian.org/security/2020/dsa-4598"
+            ],
+            "published_date": "2019-12-18T19:15:00Z",
+            "aliases": [
+              "CVE-2019-19844",
+              "GHSA-vfq6-hq5r-27r6"
+            ],
+            "cve_ids": [
+              "CVE-2019-19844"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-17",
+            "summary": "In Django 1.11.x before 1.11.18, 2.0.x before 2.0.10, and 2.1.x before 2.1.5, an Improper Neutralization of Special Elements in Output Used by a Downstream Component issue exists in django.views.defau",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.18",
+            "fixed_versions": [
+              "1.11.18"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2019/jan/04/security-releases/",
+              "https://groups.google.com/forum/#!topic/django-announce/VYU7xQQTEPQ",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "https://www.debian.org/security/2019/dsa-4363",
+              "https://usn.ubuntu.com/3851-1/"
+            ],
+            "published_date": "2019-01-09T23:29:00Z",
+            "aliases": [
+              "CVE-2019-3498",
+              "GHSA-337x-4q8g-prc5"
+            ],
+            "cve_ids": [
+              "CVE-2019-3498"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-18",
+            "summary": "Django 1.11.x before 1.11.19, 2.0.x before 2.0.11, and 2.1.x before 2.1.6 allows Uncontrolled Memory Consumption via a malicious attacker-supplied value to the django.utils.numberformat.format() funct",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.19",
+            "fixed_versions": [
+              "1.11.19"
+            ],
+            "references": [
+              "https://www.openwall.com/lists/oss-security/2019/02/11/1",
+              "https://www.djangoproject.com/weblog/2019/feb/11/security-releases/",
+              "https://groups.google.com/forum/#!topic/django-announce/WTwEAprR0IQ",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "http://www.securityfocus.com/bid/106964"
+            ],
+            "published_date": "2019-02-11T13:29:00Z",
+            "aliases": [
+              "CVE-2019-6975",
+              "GHSA-wh4h-v3f2-r2pp"
+            ],
+            "cve_ids": [
+              "CVE-2019-6975"
+            ]
+          },
+          {
+            "id": "PYSEC-2019-79",
+            "summary": "An issue was discovered in Django 1.11 before 1.11.21, 2.1 before 2.1.9, and 2.2 before 2.2.2. The clickable Current URL value displayed by the AdminURLFieldWidget displays the provided value without ",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.1.9",
+            "fixed_versions": [
+              "2.1.9"
+            ],
+            "references": [
+              "https://www.djangoproject.com/weblog/2019/jun/03/security-releases/",
+              "https://groups.google.com/forum/#!topic/django-announce/GEbHU7YoVz8",
+              "https://docs.djangoproject.com/en/dev/releases/security/",
+              "https://docs.djangoproject.com/en/dev/releases/2.2.2/",
+              "https://docs.djangoproject.com/en/dev/releases/2.1.9/"
+            ],
+            "published_date": "2019-06-03T17:29:00Z",
+            "aliases": [
+              "CVE-2019-12308",
+              "GHSA-7rp2-fm2h-wchj"
+            ],
+            "cve_ids": [
+              "CVE-2019-12308"
+            ]
+          },
+          {
+            "id": "PYSEC-2020-35",
+            "summary": "Django 1.11 before 1.11.28, 2.2 before 2.2.10, and 3.0 before 3.0.3 allows SQL Injection if untrusted data is used as a StringAgg delimiter (e.g., in Django applications that offer downloads of data a",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.28",
+            "fixed_versions": [
+              "1.11.28"
+            ],
+            "references": [
+              "https://www.openwall.com/lists/oss-security/2020/02/03/1",
+              "https://docs.djangoproject.com/en/3.0/releases/security/",
+              "https://groups.google.com/forum/#!topic/django-announce/X45S86X5bZI",
+              "https://www.djangoproject.com/weblog/2020/feb/03/security-releases/",
+              "http://www.openwall.com/lists/oss-security/2020/02/03/1"
+            ],
+            "published_date": "2020-02-03T12:15:00Z",
+            "aliases": [
+              "BIT-django-2020-7471",
+              "CVE-2020-7471",
+              "GHSA-hmr4-m2h5-33qx"
+            ],
+            "cve_ids": [
+              "CVE-2020-7471"
+            ]
+          },
+          {
+            "id": "PYSEC-2020-36",
+            "summary": "Django 1.11 before 1.11.29, 2.2 before 2.2.11, and 3.0 before 3.0.4 allows SQL Injection if untrusted data is used as a tolerance parameter in GIS functions and aggregates on Oracle. By passing a suit",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "1.11.29",
+            "fixed_versions": [
+              "1.11.29"
+            ],
+            "references": [
+              "https://groups.google.com/forum/#!topic/django-announce/fLUh_pOaKrY",
+              "https://www.djangoproject.com/weblog/2020/mar/04/security-releases/",
+              "https://docs.djangoproject.com/en/3.0/releases/security/",
+              "https://usn.ubuntu.com/4296-1/",
+              "https://security.netapp.com/advisory/ntap-20200327-0004/"
+            ],
+            "published_date": "2020-03-05T15:15:00Z",
+            "aliases": [
+              "BIT-django-2020-9402",
+              "CVE-2020-9402",
+              "GHSA-3gh2-xw74-jmcw"
+            ],
+            "cve_ids": [
+              "CVE-2020-9402"
+            ]
+          },
+          {
+            "id": "PYSEC-2021-98",
+            "summary": "Django before 2.2.24, 3.x before 3.1.12, and 3.2.x before 3.2.4 has a potential directory traversal via django.contrib.admindocs. Staff members could use the TemplateDetailView view to check the exist",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "2.2.24",
+            "fixed_versions": [
+              "2.2.24"
+            ],
+            "references": [
+              "https://docs.djangoproject.com/en/3.2/releases/security/",
+              "https://www.djangoproject.com/weblog/2021/jun/02/security-releases/",
+              "https://groups.google.com/forum/#!forum/django-announce",
+              "https://github.com/advisories/GHSA-68w8-qjq3-2gfm"
+            ],
+            "published_date": "2021-06-08T18:15:00Z",
+            "aliases": [
+              "BIT-django-2021-33203",
+              "CVE-2021-33203",
+              "GHSA-68w8-qjq3-2gfm"
+            ],
+            "cve_ids": [
+              "CVE-2021-33203"
+            ]
+          }
+        ]
+      },
+      {
+        "package": "pyyaml",
+        "version": "3.12",
+        "ecosystem": "PyPI",
+        "source_file": "D:\\project\\test_project\\requirements.txt",
+        "vulnerability_count": 4,
+        "highest_severity": "LOW",
+        "vulnerabilities": [
+          {
+            "id": "GHSA-8q59-q68h-6hv4",
+            "summary": "Improper Input Validation in PyYAML",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "5.4",
+            "fixed_versions": [
+              "5.4"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+              "https://github.com/SeldonIO/seldon-core/issues/2252",
+              "https://github.com/yaml/pyyaml/issues/420",
+              "https://github.com/yaml/pyyaml/issues/420#issuecomment-663673966",
+              "https://github.com/yaml/pyyaml/commit/a001f2782501ad2d24986959f0239a354675f9dc"
+            ],
+            "published_date": "2021-03-25T21:26:26Z",
+            "aliases": [
+              "CVE-2020-14343",
+              "PYSEC-2021-142"
+            ],
+            "cve_ids": [
+              "CVE-2020-14343"
+            ]
+          },
+          {
+            "id": "GHSA-rprw-h62v-c2w7",
+            "summary": "PyYAML insecurely deserializes YAML strings leading to arbitrary code execution",
+            "severity": "LOW",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "4.1",
+            "fixed_versions": [
+              "4.1"
+            ],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2017-18342",
+              "https://github.com/marshmallow-code/apispec/issues/278",
+              "https://github.com/yaml/pyyaml/issues/193",
+              "https://github.com/yaml/pyyaml/pull/74",
+              "https://github.com/yaml/pyyaml/commit/7b68405c81db889f83c32846462b238ccae5be80"
+            ],
+            "published_date": "2019-01-04T17:45:26Z",
+            "aliases": [
+              "CVE-2017-18342",
+              "PYSEC-2018-49"
+            ],
+            "cve_ids": [
+              "CVE-2017-18342"
+            ]
+          },
+          {
+            "id": "PYSEC-2018-49",
+            "summary": "In PyYAML before 5.1, the yaml.load() API could execute arbitrary code if used with untrusted data. The load() function has been deprecated in version 5.1 and the 'UnsafeLoader' has been introduced fo",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "5.1",
+            "fixed_versions": [
+              "5.1"
+            ],
+            "references": [
+              "https://github.com/yaml/pyyaml/pull/74",
+              "https://github.com/yaml/pyyaml/blob/master/CHANGES",
+              "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/M6JCFGEIEOFMWWIXGHSELMKQDD4CV2BA/",
+              "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KSQQMRUQSXBSUXLCRD3TSZYQ7SEZRKCE/",
+              "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/JEX7IPV5P2QJITAMA5Z63GQCZA5I6NVZ/"
+            ],
+            "published_date": "2018-06-27T12:29:00Z",
+            "aliases": [
+              "CVE-2017-18342",
+              "GHSA-rprw-h62v-c2w7"
+            ],
+            "cve_ids": [
+              "CVE-2017-18342"
+            ]
+          },
+          {
+            "id": "PYSEC-2021-142",
+            "summary": "A vulnerability was discovered in the PyYAML library in versions before 5.4, where it is susceptible to arbitrary code execution when it processes untrusted YAML files through the full_load method or ",
+            "severity": "UNKNOWN",
+            "source": "OSV",
+            "cvss_score": null,
+            "exploit_available": false,
+            "fixed_version": "5.4",
+            "fixed_versions": [
+              "5.4"
+            ],
+            "references": [
+              "https://bugzilla.redhat.com/show_bug.cgi?id=1860466",
+              "https://github.com/advisories/GHSA-8q59-q68h-6hv4"
+            ],
+            "published_date": "2021-02-09T21:15:00Z",
+            "aliases": [
+              "CVE-2020-14343",
+              "GHSA-8q59-q68h-6hv4"
+            ],
+            "cve_ids": [
+              "CVE-2020-14343"
+            ]
+          }
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "summary": {
+    "dangerous_functions_count": 7,
+    "secrets_count": 1,
+    "taint_sources_count": 0,
+    "validation_issues_count": 23,
+    "crypto_issues_count": 0,
+    "auth_issues_count": 11,
+    "framework_issues_count": 1,
+    "quality_issues_count": 0,
+    "antipattern_count": 5,
+    "vulnerability_count": 68,
+    "files_scanned": 10,
+    "total_issues": 116,
+    "risk_level": "CRITICAL"
+  },
+  "files_scanned": [
+    {
+      "path": "D:\\project\\test_project\\app.py",
+      "language": "python",
+      "extension": ".py"
+    },
+    {
+      "path": "D:\\project\\test_project\\package.json",
+      "language": "json",
+      "extension": ".json"
+    },
+    {
+      "path": "D:\\project\\test_project\\requirements.txt",
+      "language": "unknown",
+      "extension": ".txt"
+    },
+    {
+      "path": "D:\\project\\test_project\\script.js",
+      "language": "javascript",
+      "extension": ".js"
+    },
+    {
+      "path": "D:\\project\\test_project\\server.php",
+      "language": "php",
+      "extension": ".php"
+    },
+    {
+      "path": "D:\\project\\test_project\\utils.py",
+      "language": "python",
+      "extension": ".py"
+    },
+    {
+      "path": "D:\\project\\test_project\\config\\creds.env",
+      "language": "env",
+      "extension": ".env"
+    },
+    {
+      "path": "D:\\project\\test_project\\config\\settings.json",
+      "language": "json",
+      "extension": ".json"
+    },
+    {
+      "path": "D:\\project\\test_project\\src\\helper.py",
+      "language": "python",
+      "extension": ".py"
+    },
+    {
+      "path": "D:\\project\\test_project\\src\\module.js",
+      "language": "javascript",
+      "extension": ".js"
+    }
+  ],
+  "file_tree": {
+    "D:": {
+      "name": "D:",
+      "path": "D:",
+      "is_file": false,
+      "children": {
+        "project": {
+          "name": "project",
+          "path": "D:/project",
+          "is_file": false,
+          "children": {
+            "test_project": {
+              "name": "test_project",
+              "path": "D:/project/test_project",
+              "is_file": false,
+              "children": {
+                "app.py": {
+                  "name": "app.py",
+                  "path": "D:/project/test_project/app.py",
+                  "is_file": true,
+                  "children": null,
+                  "issue_count": 0,
+                  "severity": "LOW"
+                },
+                "package.json": {
+                  "name": "package.json",
+                  "path": "D:/project/test_project/package.json",
+                  "is_file": true,
+                  "children": null,
+                  "issue_count": 0,
+                  "severity": "LOW"
+                },
+                "requirements.txt": {
+                  "name": "requirements.txt",
+                  "path": "D:/project/test_project/requirements.txt",
+                  "is_file": true,
+                  "children": null,
+                  "issue_count": 0,
+                  "severity": "LOW"
+                },
+                "script.js": {
+                  "name": "script.js",
+                  "path": "D:/project/test_project/script.js",
+                  "is_file": true,
+                  "children": null,
+                  "issue_count": 2,
+                  "severity": "LOW"
+                },
+                "server.php": {
+                  "name": "server.php",
+                  "path": "D:/project/test_project/server.php",
+                  "is_file": true,
+                  "children": null,
+                  "issue_count": 6,
+                  "severity": "CRITICAL"
+                },
+                "utils.py": {
+                  "name": "utils.py",
+                  "path": "D:/project/test_project/utils.py",
+                  "is_file": true,
+                  "children": null,
+                  "issue_count": 0,
+                  "severity": "LOW"
+                },
+                "config": {
+                  "name": "config",
+                  "path": "D:/project/test_project/config",
+                  "is_file": false,
+                  "children": {
+                    "creds.env": {
+                      "name": "creds.env",
+                      "path": "D:/project/test_project/config/creds.env",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "settings.json": {
+                      "name": "settings.json",
+                      "path": "D:/project/test_project/config/settings.json",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    }
+                  },
+                  "issue_count": 0,
+                  "severity": "LOW"
+                },
+                "src": {
+                  "name": "src",
+                  "path": "D:/project/test_project/src",
+                  "is_file": false,
+                  "children": {
+                    "helper.py": {
+                      "name": "helper.py",
+                      "path": "D:/project/test_project/src/helper.py",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    },
+                    "module.js": {
+                      "name": "module.js",
+                      "path": "D:/project/test_project/src/module.js",
+                      "is_file": true,
+                      "children": null,
+                      "issue_count": 0,
+                      "severity": "LOW"
+                    }
+                  },
+                  "issue_count": 0,
+                  "severity": "LOW"
+                }
+              },
+              "issue_count": 0,
+              "severity": "LOW"
+            }
+          },
+          "issue_count": 0,
+          "severity": "LOW"
+        }
+      },
+      "issue_count": 0,
+      "severity": "LOW"
+    }
+  },
+  "unified_findings": [
+    {
+      "id": "DF-0001",
+      "category": "Dangerous Function",
+      "vulnerability": "Function",
+      "file": "D:\\project\\test_project\\script.js",
+      "line": 6,
+      "severity": "MEDIUM",
+      "description": "function getUser(id) {",
+      "type": "code_execution"
+    },
+    {
+      "id": "DF-0002",
+      "category": "Dangerous Function",
+      "vulnerability": "Function",
+      "file": "D:\\project\\test_project\\script.js",
+      "line": 11,
+      "severity": "MEDIUM",
+      "description": "function startServer() {",
+      "type": "code_execution"
+    },
+    {
+      "id": "DF-0003",
+      "category": "Dangerous Function",
+      "vulnerability": "eval",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 25,
+      "severity": "MEDIUM",
+      "description": "eval(\"echo 'This is unsafe';\");  // extremely dangerous",
+      "type": "code_execution"
+    },
+    {
+      "id": "DF-0004",
+      "category": "Dangerous Function",
+      "vulnerability": "system",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 12,
+      "severity": "MEDIUM",
+      "description": "function systemRun($cmd) {",
+      "type": "command_injection"
+    },
+    {
+      "id": "DF-0005",
+      "category": "Dangerous Function",
+      "vulnerability": "shell_exec",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 13,
+      "severity": "MEDIUM",
+      "description": "return shell_exec($cmd); // dangerous",
+      "type": "command_injection"
+    },
+    {
+      "id": "DF-0006",
+      "category": "Dangerous Function",
+      "vulnerability": "exec",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 13,
+      "severity": "MEDIUM",
+      "description": "return shell_exec($cmd); // dangerous",
+      "type": "command_injection"
+    },
+    {
+      "id": "DF-0007",
+      "category": "Dangerous Function",
+      "vulnerability": "include",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 3,
+      "severity": "MEDIUM",
+      "description": "include \"config.php\";",
+      "type": "file_operations"
+    },
+    {
+      "id": "SEC-0008",
+      "category": "Hardcoded Secret",
+      "vulnerability": "password",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 5,
+      "severity": "CRITICAL",
+      "description": "",
+      "type": "password"
+    },
+    {
+      "id": "VAL-0009",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\app.py",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0010",
+      "category": "Validation Issue",
+      "vulnerability": "missing_boundary_checks",
+      "file": "D:\\project\\test_project\\app.py",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access",
+      "type": "missing_boundary_checks"
+    },
+    {
+      "id": "VAL-0011",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\package.json",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for json",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0012",
+      "category": "Validation Issue",
+      "vulnerability": "missing_boundary_checks",
+      "file": "D:\\project\\test_project\\package.json",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "No boundary checks detected in json",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access",
+      "type": "missing_boundary_checks"
+    },
+    {
+      "id": "VAL-0013",
+      "category": "Validation Issue",
+      "vulnerability": "missing_json_schema",
+      "file": "D:\\project\\test_project\\package.json",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "JSON file has no schema validation defined",
+      "recommendation": "Define JSON Schema for validation",
+      "type": "missing_json_schema"
+    },
+    {
+      "id": "VAL-0014",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\requirements.txt",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for unknown",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0015",
+      "category": "Validation Issue",
+      "vulnerability": "missing_boundary_checks",
+      "file": "D:\\project\\test_project\\requirements.txt",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "No boundary checks detected in unknown",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access",
+      "type": "missing_boundary_checks"
+    },
+    {
+      "id": "VAL-0016",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\script.js",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for javascript",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0017",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for php",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0018",
+      "category": "Validation Issue",
+      "vulnerability": "unsanitized_sink",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 0,
+      "severity": "CRITICAL",
+      "description": "'eval(' used without sanitization in php",
+      "recommendation": "Always sanitize input before using eval(. Use appropriate escaping/encoding functions",
+      "type": "unsanitized_sink"
+    },
+    {
+      "id": "VAL-0019",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\utils.py",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0020",
+      "category": "Validation Issue",
+      "vulnerability": "missing_boundary_checks",
+      "file": "D:\\project\\test_project\\utils.py",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access",
+      "type": "missing_boundary_checks"
+    },
+    {
+      "id": "VAL-0021",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\config\\creds.env",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for env",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0022",
+      "category": "Validation Issue",
+      "vulnerability": "missing_boundary_checks",
+      "file": "D:\\project\\test_project\\config\\creds.env",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "No boundary checks detected in env",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access",
+      "type": "missing_boundary_checks"
+    },
+    {
+      "id": "VAL-0023",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for json",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0024",
+      "category": "Validation Issue",
+      "vulnerability": "missing_boundary_checks",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "No boundary checks detected in json",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access",
+      "type": "missing_boundary_checks"
+    },
+    {
+      "id": "VAL-0025",
+      "category": "Validation Issue",
+      "vulnerability": "missing_json_schema",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "JSON file has no schema validation defined",
+      "recommendation": "Define JSON Schema for validation",
+      "type": "missing_json_schema"
+    },
+    {
+      "id": "VAL-0026",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\src\\helper.py",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for python",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0027",
+      "category": "Validation Issue",
+      "vulnerability": "missing_boundary_checks",
+      "file": "D:\\project\\test_project\\src\\helper.py",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "No boundary checks detected in python",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access",
+      "type": "missing_boundary_checks"
+    },
+    {
+      "id": "VAL-0028",
+      "category": "Validation Issue",
+      "vulnerability": "missing_validation",
+      "file": "D:\\project\\test_project\\src\\module.js",
+      "line": 0,
+      "severity": "HIGH",
+      "description": "No input validation detected for javascript",
+      "recommendation": "Implement input validation using type checking, validation libraries, or validation frameworks",
+      "type": "missing_validation"
+    },
+    {
+      "id": "VAL-0029",
+      "category": "Validation Issue",
+      "vulnerability": "missing_boundary_checks",
+      "file": "D:\\project\\test_project\\src\\module.js",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "No boundary checks detected in javascript",
+      "recommendation": "Implement boundary checks to prevent buffer overflows and out-of-bounds access",
+      "type": "missing_boundary_checks"
+    },
+    {
+      "id": "AUTH-0030",
+      "category": "Authentication",
+      "vulnerability": "missing_session_rotation",
+      "file": "D:\\project\\test_project\\app.py",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Login functionality detected without session rotation",
+      "type": "missing_session_rotation"
+    },
+    {
+      "id": "AUTH-0031",
+      "category": "Authentication",
+      "vulnerability": "missing_mfa",
+      "file": "D:\\project\\test_project\\app.py",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Authentication code without MFA/2FA implementation",
+      "type": "missing_mfa"
+    },
+    {
+      "id": "AUTH-0032",
+      "category": "Authentication",
+      "vulnerability": "missing_password_length_check",
+      "file": "D:\\project\\test_project\\app.py",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Password handling without length validation",
+      "type": "missing_password_length_check"
+    },
+    {
+      "id": "AUTH-0033",
+      "category": "Authentication",
+      "vulnerability": "missing_password_complexity",
+      "file": "D:\\project\\test_project\\app.py",
+      "line": 0,
+      "severity": "LOW",
+      "description": "Password handling without complexity requirements",
+      "type": "missing_password_complexity"
+    },
+    {
+      "id": "AUTH-0034",
+      "category": "Authentication",
+      "vulnerability": "missing_session_rotation",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Login functionality detected without session rotation",
+      "type": "missing_session_rotation"
+    },
+    {
+      "id": "AUTH-0035",
+      "category": "Authentication",
+      "vulnerability": "missing_mfa",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Authentication code without MFA/2FA implementation",
+      "type": "missing_mfa"
+    },
+    {
+      "id": "AUTH-0036",
+      "category": "Authentication",
+      "vulnerability": "missing_password_length_check",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Password handling without length validation",
+      "type": "missing_password_length_check"
+    },
+    {
+      "id": "AUTH-0037",
+      "category": "Authentication",
+      "vulnerability": "missing_password_complexity",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 0,
+      "severity": "LOW",
+      "description": "Password handling without complexity requirements",
+      "type": "missing_password_complexity"
+    },
+    {
+      "id": "AUTH-0038",
+      "category": "Authentication",
+      "vulnerability": "potential_auth_bypass",
+      "file": "D:\\project\\test_project\\server.php",
+      "line": 18,
+      "severity": "CRITICAL",
+      "description": "Potential authentication bypass detected",
+      "type": "potential_auth_bypass"
+    },
+    {
+      "id": "AUTH-0039",
+      "category": "Authentication",
+      "vulnerability": "missing_password_length_check",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "line": 0,
+      "severity": "MEDIUM",
+      "description": "Password handling without length validation",
+      "type": "missing_password_length_check"
+    },
+    {
+      "id": "AUTH-0040",
+      "category": "Authentication",
+      "vulnerability": "missing_password_complexity",
+      "file": "D:\\project\\test_project\\config\\settings.json",
+      "line": 0,
+      "severity": "LOW",
+      "description": "Password handling without complexity requirements",
+      "type": "missing_password_complexity"
+    },
+    {
+      "id": "FW-0041",
+      "category": "Framework Security",
+      "vulnerability": "exposure",
+      "file": "D:\\project\\test_project\\script.js",
+      "line": 4,
+      "severity": "critical",
+      "description": "",
+      "recommendation": "Move credentials to environment variables using process.env",
+      "type": "exposure",
+      "framework": "unknown"
+    }
+  ],
+  "recommendations": [
+    {
+      "category": "Secret Management",
+      "priority": "CRITICAL",
+      "title": "Remove Hardcoded Secrets",
+      "description": "Move all hardcoded credentials to environment variables or secure vaults.",
+      "steps": [
+        "Use environment variables for sensitive configuration",
+        "Implement secrets management (e.g., AWS Secrets Manager, HashiCorp Vault)",
+        "Add .env files to .gitignore",
+        "Rotate all exposed credentials immediately"
+      ]
+    },
+    {
+      "category": "Code Security",
+      "priority": "HIGH",
+      "title": "Replace Dangerous Functions",
+      "description": "Replace or properly sanitize dangerous function calls.",
+      "steps": [
+        "Review all uses of eval(), exec(), and similar functions",
+        "Implement input validation and sanitization",
+        "Use safe alternatives when available",
+        "Apply principle of least privilege"
+      ]
+    }
+  ],
+  "risk_level": "CRITICAL"
+}

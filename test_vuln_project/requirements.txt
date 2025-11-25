@@ -1,0 +1,4 @@
+# intentionally include versions that are often flagged by scanners
+requests==2.19.1
+urllib3==1.22
+django==2.0.5

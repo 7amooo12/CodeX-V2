@@ -277,3 +277,4 @@ class JavaFrameworkChecker(BaseSecurityChecker):
         return findings
 
 
+

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX Analysis Platform - Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #020b14 0%, #0a1621 100%);
+            color: #e4e9f0;
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(10, 22, 33, 0.8);
+            border: 1px solid rgba(0, 255, 154, 0.2);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 255, 154, 0.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #12e2f0, #00ff9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2 {
+            color: #12e2f0;
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(18, 226, 240, 0.3);
+        }
+
+        h3 {
+            color: #00ff9a;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        h4 {
+            color: #008cff;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+        }
+
+        strong {
+            color: #00ff9a;
+        }
+
+        code {
+            background: #0a1621;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #00ff9a;
+            border: 1px solid rgba(0, 255, 154, 0.2);
+        }
+
+        pre {
+            background: #0a1621;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(18, 226, 240, 0.3);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            display: block;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card {
+            background: rgba(0, 255, 154, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 154, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #00ff9a;
+            box-shadow: 0 4px 16px rgba(0, 255, 154, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(18, 226, 240, 0.2);
+            color: #12e2f0;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .severity-critical { background: rgba(255, 59, 59, 0.2); color: #ff3b3b; }
+        .severity-high { background: rgba(255, 107, 53, 0.2); color: #ff6b35; }
+        .severity-medium { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .severity-low { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #12e2f0, #00ff9a);
+            color: #020b14;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 255, 154, 0.4);
+        }
+
+        .toc {
+            background: rgba(18, 226, 240, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(18, 226, 240, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .toc ul {
+            margin-left: 1rem;
+        }
+
+        .toc a {
+            color: #12e2f0;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: #00ff9a;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ CodeX Analysis Platform</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">A modern, professional, enterprise-grade security code analysis dashboard with a stunning cyber-security themed UI.</p>
+
+        <div class="toc">
+            <h3>📚 Table of Contents</h3>
+            <ul>
+                <li><a href="#features">✨ Features</a></li>
+                <li><a href="#getting-started">🚀 Getting Started</a></li>
+                <li><a href="#data-loading">📊 Data Loading</a></li>
+                <li><a href="#project-structure">📂 Project Structure</a></li>
+                <li><a href="#customization">🔧 Customization</a></li>
+                <li><a href="#deployment">🚀 Deployment</a></li>
+            </ul>
+        </div>
+
+        <h2 id="features">✨ Features</h2>
+
+        <h3>🎯 Executive Dashboard</h3>
+        <ul>
+            <li><strong>Real-time Risk Assessment</strong> - Comprehensive risk scoring and severity breakdown</li>
+            <li><strong>Visual Analytics</strong> - Interactive charts (pie, bar, line) for all metrics</li>
+            <li><strong>Key Metrics Cards</strong> - Total files, issues, risk score, and critical findings</li>
+            <li><strong>Trend Analysis</strong> - Historical vulnerability trends</li>
+        </ul>
+
+        <h3>📁 File Tree Hierarchy</h3>
+        <ul>
+            <li><strong>Interactive Explorer</strong> - Collapsible file/folder structure</li>
+            <li><strong>Risk Indicators</strong> - Color-coded dots showing risk levels</li>
+            <li><strong>Vulnerability Counts</strong> - Badge showing issue count per file</li>
+            <li><strong>Quick Navigation</strong> - Click to view file-specific findings</li>
+        </ul>
+
+        <h3>📋 Intelligent Findings Table</h3>
+        <ul>
+            <li><strong>Consolidated View</strong> - All findings from all modules in one place</li>
+            <li><strong>Auto-Deduplication</strong> - Smart deduplication of similar issues</li>
+            <li><strong>Advanced Filtering</strong> - Search, sort, and filter by multiple criteria</li>
+            <li><strong>Export Options</strong> - Export to CSV, JSON, PDF</li>
+        </ul>
+
+        <h3>🔍 Module-Specific Dashboards</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <strong>1. Dangerous Functions</strong>
+                <p>Unsafe function calls detection</p>
+            </div>
+            <div class="feature-card">
+                <strong>2. Hardcoded Secrets</strong>
+                <p>API keys, passwords, credentials</p>
+            </div>
+            <div class="feature-card">
+                <strong>3. User Input Sources</strong>
+                <p>Taint origin tracking</p>
+            </div>
+            <div class="feature-card">
+                <strong>4. Taint Flow Analysis</strong>
+                <p>Interactive data flow visualization</p>
+            </div>
+            <div class="feature-card">
+                <strong>5. Validation Issues</strong>
+                <p>Missing input validation</p>
+            </div>
+            <div class="feature-card">
+                <strong>6. Cryptography Misuse</strong>
+                <p>Weak algorithms and configurations</p>
+            </div>
+            <div class="feature-card">
+                <strong>7. Authentication Security</strong>
+                <p>Auth and session vulnerabilities</p>
+            </div>
+            <div class="feature-card">
+                <strong>8. Framework Security</strong>
+                <p>Framework-specific issues</p>
+            </div>
+            <div class="feature-card">
+                <strong>9. Code Quality</strong>
+                <p>Maintainability and best practices</p>
+            </div>
+            <div class="feature-card">
+                <strong>10. Anti-Patterns</strong>
+                <p>Security anti-patterns</p>
+            </div>
+            <div class="feature-card">
+                <strong>11. Vulnerability Management</strong>
+                <p>CVE mapping and OWASP classification</p>
+            </div>
+        </div>
+
+        <h2 id="getting-started">🚀 Getting Started</h2>
+
+        <h3>Prerequisites</h3>
+        <pre><code>Node.js >= 18.0.0
+npm >= 9.0.0</code></pre>
+
+        <h3>Installation</h3>
+
+        <h4>1. Install Dependencies</h4>
+        <pre><code>cd gui
+npm install</code></pre>
+
+        <h4>2. Start Development Server</h4>
+        <pre><code>npm run dev</code></pre>
+        <p>The application will open at <code>http://localhost:3000</code></p>
+
+        <h4>3. Build for Production</h4>
+        <pre><code>npm run build
+npm run preview</code></pre>
+
+        <h2 id="data-loading">📊 Data Loading</h2>
+
+        <p>The application loads analysis data from:</p>
+        <ol>
+            <li><strong><code>/public/data/analysis.json</code></strong> - Real analysis results</li>
+            <li><strong><code>/public/data/demo-data.json</code></strong> - Demo data (fallback)</li>
+        </ol>
+
+        <h3>Integrating with Python Analyzer</h3>
+
+        <p>To connect the GUI with your Python analyzer:</p>
+
+        <h4>Option 1: Generate JSON</h4>
+        <pre><code># In your project root
+python comprehensive_analyzer.py . -json
+
+# Copy output to GUI
+cp output/comprehensive_analysis.json gui/public/data/analysis.json</code></pre>
+
+        <h4>Option 2: API Integration</h4>
+        <p>Create a backend API endpoint and update the data loading:</p>
+        <pre><code>const response = await fetch('http://localhost:8000/api/analysis');
+const data = await response.json();
+setAnalysisData(data);</code></pre>
+
+        <h2 id="project-structure">📂 Project Structure</h2>
+        <pre><code>gui/
+├── src/
+│   ├── components/
+│   │   ├── common/          # Reusable components (Button, Card, Badge, etc.)
+│   │   ├── charts/          # Chart components (Pie, Bar, Line)
+│   │   ├── layout/          # Layout components (TopNav, PageHeader)
+│   │   └── dashboard/       # Dashboard-specific components
+│   ├── pages/               # All page components (Dashboard, FileTree, etc.)
+│   ├── styles/              # Global styles and theme
+│   ├── types/               # TypeScript type definitions
+│   ├── utils/               # Utility functions and store
+│   ├── data/                # Demo data
+│   ├── App.tsx              # Main app component
+│   └── main.tsx             # Entry point
+├── public/
+│   ├── data/                # Data files (analysis.json, demo-data.json)
+│   └── index.html
+└── package.json</code></pre>
+
+        <h2 id="customization">🔧 Customization</h2>
+
+        <h3>Theme Colors</h3>
+        <p>Edit <code>src/styles/theme.ts</code> to customize colors:</p>
+        <pre><code>export const theme = {
+  colors: {
+    accent: {
+      green: '#00ff9a',  // Change primary accent
+      cyan: '#12e2f0',   // Change secondary accent
+    }
+  }
+};</code></pre>
+
+        <h3>Add New Module</h3>
+        <ol>
+            <li>Create page: <code>src/pages/NewModule.tsx</code></li>
+            <li>Add route in <code>src/App.tsx</code></li>
+            <li>Add tab in <code>src/components/layout/TopNav.tsx</code></li>
+        </ol>
+
+        <h2 id="deployment">🚀 Deployment</h2>
+
+        <h3>Vercel</h3>
+        <pre><code>npm run build
+vercel --prod</code></pre>
+
+        <h3>Docker</h3>
+        <pre><code>FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "run", "preview"]</code></pre>
+
+        <h2>🐛 Troubleshooting</h2>
+
+        <h3>Demo data not loading</h3>
+        <ul>
+            <li>Check console for errors</li>
+            <li>Verify <code>public/data/demo-data.json</code> exists</li>
+            <li>Check browser network tab</li>
+        </ul>
+
+        <h3>Charts not rendering</h3>
+        <ul>
+            <li>Install recharts: <code>npm install recharts</code></li>
+            <li>Clear cache: <code>rm -rf node_modules/.vite</code></li>
+        </ul>
+
+        <h3>Build fails</h3>
+        <pre><code># Clear and reinstall
+rm -rf node_modules package-lock.json
+npm install
+npm run build</code></pre>
+
+        <h2>🎉 Credits</h2>
+        <p>Built with:</p>
+        <div style="margin: 1rem 0;">
+            <span class="badge">React 18</span>
+            <span class="badge">TypeScript</span>
+            <span class="badge">Vite</span>
+            <span class="badge">Recharts</span>
+            <span class="badge">Zustand</span>
+            <span class="badge">React Router</span>
+        </div>
+
+        <hr style="border: 1px solid rgba(18, 226, 240, 0.2); margin: 2rem 0;">
+        <p style="text-align: center; font-size: 1.2rem;">
+            <strong>Made with 💚 for Security Professionals</strong>
+        </p>
+
+        <a href="javascript:window.close()" class="back-link">← Close Documentation</a>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,519 @@
+{
+  "metadata": {
+    "project_path": "/demo/project",
+    "scan_time": "2025-11-24T14:00:00.000Z",
+    "analyzer_version": "2.0",
+    "project_name": "Demo Security Project"
+  },
+  "dangerous_functions": [
+    {
+      "function": "eval",
+      "category": "code_injection",
+      "language": "javascript",
+      "file": "/demo/project/src/app.js",
+      "line": 42,
+      "context": "eval(userInput)",
+      "severity": "HIGH"
+    },
+    {
+      "function": "exec",
+      "category": "command_injection",
+      "language": "python",
+      "file": "/demo/project/api/handler.py",
+      "line": 128,
+      "context": "os.exec(command)",
+      "severity": "CRITICAL"
+    }
+  ],
+  "secrets": [
+    {
+      "type": "aws_key",
+      "file": "/demo/project/config/settings.py",
+      "line": 15,
+      "context": "AWS_KEY = 'AKIAIOSFODNN7EXAMPLE'",
+      "severity": "CRITICAL",
+      "entropy": 4.5
+    },
+    {
+      "type": "api_key",
+      "file": "/demo/project/src/config.js",
+      "line": 8,
+      "context": "const API_KEY = 'sk_live_1234567890abcdef'",
+      "severity": "CRITICAL",
+      "entropy": 4.2
+    },
+    {
+      "type": "database_password",
+      "file": "/demo/project/config/database.py",
+      "line": 23,
+      "context": "DB_PASSWORD = 'mysecretpassword123'",
+      "severity": "CRITICAL",
+      "entropy": 3.8
+    },
+    {
+      "type": "jwt_secret",
+      "file": "/demo/project/auth/jwt.js",
+      "line": 5,
+      "context": "const JWT_SECRET = '1234567890abcdefghijklmnop'",
+      "severity": "CRITICAL",
+      "entropy": 4.1
+    },
+    {
+      "type": "private_key",
+      "file": "/demo/project/keys/rsa.key",
+      "line": 1,
+      "context": "-----BEGIN RSA PRIVATE KEY-----",
+      "severity": "CRITICAL",
+      "entropy": 4.7
+    }
+  ],
+  "taint_analysis": [
+    {
+      "source": "req.query.id",
+      "type": "http_parameter",
+      "file": "/demo/project/routes/user.js",
+      "line": 24,
+      "context": "const id = req.query.id",
+      "severity": "MEDIUM"
+    },
+    {
+      "source": "req.body.username",
+      "type": "http_body",
+      "file": "/demo/project/api/auth.js",
+      "line": 45,
+      "context": "const username = req.body.username",
+      "severity": "HIGH"
+    },
+    {
+      "source": "req.params.userId",
+      "type": "http_parameter",
+      "file": "/demo/project/routes/profile.js",
+      "line": 12,
+      "context": "const userId = req.params.userId",
+      "severity": "MEDIUM"
+    },
+    {
+      "source": "process.env.USER_INPUT",
+      "type": "environment",
+      "file": "/demo/project/config/env.js",
+      "line": 8,
+      "context": "const input = process.env.USER_INPUT",
+      "severity": "LOW"
+    }
+  ],
+  "taint_flows": [
+    {
+      "source": "req.body.username",
+      "sink": "db.query",
+      "flow_path": ["username", "sanitize", "query"],
+      "file": "/demo/project/api/auth.js",
+      "line_start": 45,
+      "line_end": 52,
+      "severity": "HIGH"
+    }
+  ],
+  "validation_issues": [
+    {
+      "type": "missing_validation",
+      "message": "User input not validated before use",
+      "file": "/demo/project/api/user.py",
+      "line": 67,
+      "context": "user_id = request.args.get('id')",
+      "severity": "HIGH",
+      "recommendation": "Add input validation and sanitization"
+    },
+    {
+      "type": "missing_sanitization",
+      "message": "HTML content not sanitized",
+      "file": "/demo/project/views/display.js",
+      "line": 34,
+      "context": "div.innerHTML = userContent",
+      "severity": "HIGH",
+      "recommendation": "Use DOMPurify or similar sanitization library"
+    },
+    {
+      "type": "missing_type_check",
+      "message": "No type validation for numeric input",
+      "file": "/demo/project/api/payment.py",
+      "line": 89,
+      "context": "amount = request.json['amount']",
+      "severity": "MEDIUM",
+      "recommendation": "Validate input type and range"
+    }
+  ],
+  "crypto_issues": [
+    {
+      "type": "weak_algorithm",
+      "message": "MD5 hash algorithm is cryptographically broken",
+      "file": "/demo/project/utils/crypto.py",
+      "line": 12,
+      "context": "hashlib.md5(password)",
+      "severity": "HIGH",
+      "recommendation": "Use SHA-256 or bcrypt for password hashing"
+    },
+    {
+      "type": "weak_cipher",
+      "message": "DES encryption is deprecated and insecure",
+      "file": "/demo/project/security/encrypt.js",
+      "line": 28,
+      "context": "crypto.createCipher('des', key)",
+      "severity": "CRITICAL",
+      "recommendation": "Use AES-256-GCM for encryption"
+    },
+    {
+      "type": "hardcoded_iv",
+      "message": "Initialization vector (IV) is hardcoded",
+      "file": "/demo/project/crypto/aes.py",
+      "line": 15,
+      "context": "iv = b'1234567890123456'",
+      "severity": "HIGH",
+      "recommendation": "Generate random IV for each encryption"
+    },
+    {
+      "type": "weak_random",
+      "message": "Using weak random number generator for cryptographic purposes",
+      "file": "/demo/project/auth/token.js",
+      "line": 42,
+      "context": "Math.random().toString(36)",
+      "severity": "HIGH",
+      "recommendation": "Use crypto.randomBytes() for secure random generation"
+    }
+  ],
+  "auth_issues": [
+    {
+      "type": "weak_password_policy",
+      "message": "No password length validation",
+      "file": "/demo/project/auth/register.py",
+      "line": 34,
+      "context": "password = request.form['password']",
+      "severity": "MEDIUM",
+      "category": "password"
+    },
+    {
+      "type": "missing_password_complexity",
+      "message": "No password complexity requirements enforced",
+      "file": "/demo/project/auth/register.py",
+      "line": 35,
+      "context": "if len(password) > 0:",
+      "severity": "MEDIUM",
+      "category": "password"
+    },
+    {
+      "type": "session_fixation",
+      "message": "Session ID not regenerated after login",
+      "file": "/demo/project/auth/login.js",
+      "line": 67,
+      "context": "req.session.userId = user.id",
+      "severity": "HIGH",
+      "category": "session"
+    },
+    {
+      "type": "insecure_cookie",
+      "message": "Authentication cookie missing Secure flag",
+      "file": "/demo/project/middleware/auth.js",
+      "line": 23,
+      "context": "res.cookie('auth_token', token)",
+      "severity": "HIGH",
+      "category": "cookies"
+    },
+    {
+      "type": "missing_mfa",
+      "message": "No multi-factor authentication implementation",
+      "file": "/demo/project/auth/login.py",
+      "line": 89,
+      "context": "# TODO: Add MFA",
+      "severity": "MEDIUM",
+      "category": "mfa"
+    }
+  ],
+  "framework_issues": [
+    {
+      "framework": "Django",
+      "type": "debug_enabled",
+      "message": "DEBUG mode enabled in production",
+      "file": "/demo/project/settings.py",
+      "line": 10,
+      "context": "DEBUG = True",
+      "severity": "HIGH",
+      "recommendation": "Set DEBUG = False in production"
+    },
+    {
+      "framework": "Express",
+      "type": "missing_helmet",
+      "message": "Security headers not configured (Helmet.js missing)",
+      "file": "/demo/project/app.js",
+      "line": 5,
+      "context": "const app = express()",
+      "severity": "MEDIUM",
+      "recommendation": "Install and configure helmet middleware"
+    },
+    {
+      "framework": "Flask",
+      "type": "csrf_disabled",
+      "message": "CSRF protection is disabled",
+      "file": "/demo/project/app.py",
+      "line": 12,
+      "context": "app.config['WTF_CSRF_ENABLED'] = False",
+      "severity": "HIGH",
+      "recommendation": "Enable CSRF protection for all forms"
+    },
+    {
+      "framework": "React",
+      "type": "dangerous_html",
+      "message": "Using dangerouslySetInnerHTML without sanitization",
+      "file": "/demo/project/components/Display.jsx",
+      "line": 23,
+      "context": "dangerouslySetInnerHTML={{ __html: userContent }}",
+      "severity": "CRITICAL",
+      "recommendation": "Sanitize HTML content before rendering"
+    }
+  ],
+  "quality_issues": {
+    "empty_catch_blocks": [
+      {
+        "type": "empty_catch",
+        "message": "Empty exception handler",
+        "file": "/demo/project/utils/handler.py",
+        "line": 45,
+        "context": "except Exception: pass",
+        "severity": "LOW"
+      },
+      {
+        "type": "empty_catch",
+        "message": "Silent exception swallowing",
+        "file": "/demo/project/api/processor.js",
+        "line": 78,
+        "context": "catch (error) { }",
+        "severity": "LOW"
+      }
+    ],
+    "infinite_loops": [
+      {
+        "type": "infinite_loop",
+        "message": "Potential infinite loop detected",
+        "file": "/demo/project/utils/scanner.py",
+        "line": 123,
+        "context": "while True:",
+        "severity": "MEDIUM"
+      }
+    ],
+    "dead_code": [
+      {
+        "type": "unreachable_code",
+        "message": "Code after return statement",
+        "file": "/demo/project/helpers/format.js",
+        "line": 56,
+        "context": "return result; console.log('Never executes')",
+        "severity": "LOW"
+      }
+    ],
+    "inconsistent_naming": [
+      {
+        "type": "naming_convention",
+        "message": "Inconsistent variable naming (camelCase vs snake_case)",
+        "file": "/demo/project/models/user.py",
+        "line": 12,
+        "context": "userEmail = 'test@example.com'",
+        "severity": "LOW"
+      }
+    ]
+  },
+  "antipatterns": {
+    "sql_concatenation": [
+      {
+        "pattern": "sql_injection",
+        "type": "sql_concatenation",
+        "file": "/demo/project/db/query.py",
+        "line": 23,
+        "context": "query = 'SELECT * FROM users WHERE id=' + user_id",
+        "severity": "HIGH",
+        "recommendation": "Use parameterized queries"
+      },
+      {
+        "pattern": "sql_injection",
+        "type": "sql_concatenation",
+        "file": "/demo/project/api/search.js",
+        "line": 45,
+        "context": "`SELECT * FROM products WHERE name LIKE '%${searchTerm}%'`",
+        "severity": "CRITICAL",
+        "recommendation": "Use prepared statements with placeholders"
+      }
+    ],
+    "password_variables": [
+      {
+        "pattern": "password_in_code",
+        "type": "password_variables",
+        "file": "/demo/project/config/db.py",
+        "line": 8,
+        "context": "password = 'admin123'",
+        "severity": "CRITICAL",
+        "recommendation": "Use environment variables for passwords"
+      }
+    ],
+    "api_without_timeout": [
+      {
+        "pattern": "no_timeout",
+        "type": "api_without_timeout",
+        "file": "/demo/project/services/http.js",
+        "line": 34,
+        "context": "axios.get(url)",
+        "severity": "MEDIUM",
+        "recommendation": "Set timeout for HTTP requests"
+      }
+    ],
+    "unsafe_file_paths": [
+      {
+        "pattern": "path_traversal",
+        "type": "unsafe_file_paths",
+        "file": "/demo/project/files/download.py",
+        "line": 56,
+        "context": "open('../uploads/' + filename)",
+        "severity": "HIGH",
+        "recommendation": "Validate and sanitize file paths"
+      }
+    ]
+  },
+  "vulnerability_scan": {
+    "total_dependencies": 45,
+    "vulnerable_packages": 4,
+    "total_vulnerabilities": 6,
+    "severity_breakdown": {
+      "CRITICAL": 2,
+      "HIGH": 3,
+      "MEDIUM": 1,
+      "LOW": 0
+    },
+    "packages": [
+      {
+        "name": "django",
+        "version": "2.2.10",
+        "ecosystem": "PyPI",
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-57810",
+            "severity": "CRITICAL",
+            "summary": "Django SQL injection vulnerability in QuerySet filtering allows remote code execution through crafted database queries",
+            "cvss_score": 9.8,
+            "cve_ids": ["CVE-2025-57810", "CVE-2025-57811"],
+            "fixed_versions": ["3.2.23", "4.1.13", "4.2.7"],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-57810",
+              "https://github.com/django/django/security/advisories",
+              "https://docs.djangoproject.com/en/dev/releases/security",
+              "https://www.djangoproject.com/weblog/2025/security-releases"
+            ]
+          },
+          {
+            "id": "CVE-2025-29907",
+            "severity": "HIGH",
+            "summary": "Django authentication bypass vulnerability in password reset functionality",
+            "cvss_score": 7.5,
+            "cve_ids": ["CVE-2025-29907"],
+            "fixed_versions": ["3.2.24", "4.1.14", "4.2.8"],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-29907",
+              "https://github.com/django/django/commit/abc123def456",
+              "https://docs.djangoproject.com/en/dev/releases/security"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "requests",
+        "version": "2.25.0",
+        "ecosystem": "PyPI",
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-32681",
+            "severity": "HIGH",
+            "summary": "Requests library SSRF vulnerability allows attackers to bypass proxy authentication and access internal services",
+            "cvss_score": 8.1,
+            "cve_ids": ["CVE-2025-32681", "CVE-2025-32682"],
+            "fixed_versions": ["2.31.0", "2.32.0"],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-32681",
+              "https://github.com/psf/requests/security/advisories",
+              "https://github.com/psf/requests/commit/xyz789abc012"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "flask",
+        "version": "1.1.2",
+        "ecosystem": "PyPI",
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-45123",
+            "severity": "CRITICAL",
+            "summary": "Flask session management vulnerability allows session hijacking through predictable session tokens",
+            "cvss_score": 9.1,
+            "cve_ids": ["CVE-2025-45123"],
+            "fixed_versions": ["2.0.3", "2.1.0"],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-45123",
+              "https://github.com/pallets/flask/security/advisories",
+              "https://flask.palletsprojects.com/en/2.3.x/security"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "numpy",
+        "version": "1.19.0",
+        "ecosystem": "PyPI",
+        "vulnerabilities": [
+          {
+            "id": "CVE-2025-67890",
+            "severity": "MEDIUM",
+            "summary": "NumPy buffer overflow in array processing functions can lead to denial of service",
+            "cvss_score": 5.9,
+            "cve_ids": ["CVE-2025-67890", "CVE-2025-67891"],
+            "fixed_versions": ["1.22.0", "1.23.0"],
+            "references": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2025-67890",
+              "https://github.com/numpy/numpy/security/advisories",
+              "https://numpy.org/doc/stable/release.html"
+            ]
+          }
+        ]
+      }
+    ],
+    "scan_duration": 12.5
+  },
+  "files_scanned": [
+    {
+      "path": "/demo/project/src/app.js",
+      "language": "javascript",
+      "lines": 245,
+      "size": 8192,
+      "risk_score": 75,
+      "vulnerability_count": 5
+    },
+    {
+      "path": "/demo/project/api/handler.py",
+      "language": "python",
+      "lines": 180,
+      "size": 6234,
+      "risk_score": 85,
+      "vulnerability_count": 8
+    }
+  ],
+  "summary": {
+    "dangerous_functions_count": 2,
+    "secrets_count": 5,
+    "taint_sources_count": 4,
+    "validation_issues_count": 3,
+    "crypto_issues_count": 4,
+    "auth_issues_count": 5,
+    "framework_issues_count": 4,
+    "quality_issues_count": 6,
+    "antipattern_count": 5,
+    "vulnerability_count": 6,
+    "files_scanned": 2,
+    "total_issues": 44,
+    "risk_level": "CRITICAL"
+  },
+  "risk_level": "HIGH"
+}
+

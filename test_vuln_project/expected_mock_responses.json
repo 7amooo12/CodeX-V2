@@ -1,0 +1,62 @@
+{
+  "requests==2.19.1": {
+    "osv": [
+      {
+        "id": "OSV-TEST-1",
+        "summary": "Mock vuln for requests 2.19.1",
+        "references": []
+      }
+    ],
+    "nvd": [
+      {
+        "cve": "CVE-XXXX-1111",
+        "description": "Mock NVD entry"
+      }
+    ],
+    "github": {
+      "data": {
+        "securityVulnerabilities": []
+      }
+    }
+  },
+  "lodash==4.17.11": {
+    "osv": [
+      {
+        "id": "OSV-LODASH-1",
+        "summary": "Prototype pollution - mock",
+        "references": []
+      }
+    ],
+    "nvd": [
+      {
+        "cve": "CVE-2018-16487",
+        "description": "Prototype pollution in lodash (mock)"
+      }
+    ],
+    "github": {
+      "data": {
+        "securityVulnerabilities": []
+      }
+    }
+  },
+  "commons-collections==3.2.1": {
+    "osv": [
+      {
+        "id": "OSV-CC-1",
+        "summary": "Mock RCE pre-serialized gadget",
+        "references": []
+      }
+    ],
+    "nvd": [
+      {
+        "cve": "CVE-2007-1234",
+        "description": "Mock historical CVE"
+      }
+    ],
+    "github": {
+      "data": {
+        "securityVulnerabilities": []
+      }
+    }
+  }
+}
