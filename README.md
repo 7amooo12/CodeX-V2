@@ -18,18 +18,15 @@ Python-based static analysis toolkit with a REST API and React dashboard. Scans 
 - `test_all_functions.py` – examples and smoke tests
 
 ## Backend setup (CLI + API)
-1) Create a virtual environment  
-`python -m venv .venv`  
-Windows: `.venv\Scripts\activate` · macOS/Linux: `source .venv/bin/activate`
 
-2) Install Python deps (core + PDF/report extras)  
+1) Install Python deps (core + PDF/report extras)  
 `pip install flask flask-cors requests reportlab matplotlib psutil`
 
-3) Quick CLI scan (JSON+PDF)  
+2) Quick CLI scan (JSON+PDF)  
 `python comprehensive_analyzer.py test_project -both`  
 Outputs are saved under `output/` (JSON always, PDF when `reportlab`/`matplotlib` are installed).
 
-4) Run the REST API for the GUI  
+3) Run the REST API for the GUI  
 `python analyzer_api.py` (binds to `http://0.0.0.0:5000`)  
 Key endpoints: `/api/health`, `/api/start-analysis`, `/api/analysis/<id>/status`, `/api/analysis/<id>/download/{json|pdf}`
 
@@ -40,10 +37,6 @@ Key endpoints: `/api/health`, `/api/start-analysis`, `/api/analysis/<id>/status`
    - Set `VITE_API_URL=http://localhost:5000/api` (PowerShell: `$env:VITE_API_URL="http://localhost:5000/api"`).  
 4) Start dev server: `npm run dev -- --host --port 5173`  
 5) Open the printed URL, choose a project path, and start a scan. Downloads hit `/analysis/<id>/download/{json|pdf}`.
-
-## Additional tools & reports
-- Generate progress PDF: `python generate_progress_report.py`
-- Demo scripts: `python demos/demo_analyzer.py`, `python demos/demo_quality_report.py`, `python demos/demo_antipattern_report.py`
 
 ## Testing & smoke checks
 - End-to-end smoke: `python test_all_functions.py`
